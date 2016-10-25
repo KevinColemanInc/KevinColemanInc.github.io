@@ -7,6 +7,9 @@ footer: true
 ---
 Try some things I've built recently like…
 
+## Trump Facts (TADHackathon Orlando Winner) [trumpfacts.sparkstart.io](https://trumpfacts.sparkstart.io)
+Send Trump facts to your Trump supporting friends so they can stay up to date on their favorite candidate. [TADHack winners](http://blog.tadhack.com/2016/10/16/tadhack-2016-winners/).
+
 ## Uber Outside Hack Winner
 Read about it on [Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/).
 
