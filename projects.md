@@ -6,7 +6,7 @@ sharing: true
 footer: true
 permalink: /projects/
 ---
-Try some things I've built recently like…
+Try some things I've built like…
 
 ## Trump Facts (TADHackathon Orlando Winner) [trumpfacts.sparkstart.io](https://trumpfacts.sparkstart.io)
 Send Trump facts to your Trump supporting friends so they can stay up to date on their favorite candidate. [TADHack winners](http://blog.tadhack.com/2016/10/16/tadhack-2016-winners/).
@@ -14,19 +14,24 @@ Send Trump facts to your Trump supporting friends so they can stay up to date on
 ## Uber Outside Hack Winner
 Read about it on [Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/).
 
-## First Dev Job [link](https://www.firstdevjob.com/)
-Learn how to build the skills you need to land your first $100k dev job
-
 ## Sentimas [link](http://challengepost.com/software/sentimus-edegx)
 Natural Language Processing algorithm for improving Sear's Review recommendations
 Built on Apigee and NodeJs
 
-## Craftia [link](https://github.com/Ampersand-Labs/ethor)
-ProtoHack Austin 1st place '15
+## Craftia (ProtoHack Austin 1st place)
 Craft social platform for Indian women
 
-## eThor Gem [link](https://github.com/Ampersand-Labs/ethor)
-Ruby gem for communicating with the [eThor](http://www.ethor.com) API
+## Gathercam (First place Startup Weekend 2014)
+Photo aggregator via social media and hashtags for weddings and events
+
+## ChargeForward (FinApps 2014 $10,000 prize Winner) [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
+Android Wear application for hands free credit card selection
+
+## SafetyNet (1st best public safety, 1st att webrtc prize, 2nd telerik prize at ATT hackathon)
+Web operations platform for first responder managment.
+
+## Atlanta StartUp Jobs [link](http://www.atlantastartupjobs.com)
+See job postings from Atlanta's top startups.
 
 ## SparkLink [link](http://www.SparkLink.io/)
 App store linking service for small businesses trying to increase downloads
@@ -34,26 +39,11 @@ App store linking service for small businesses trying to increase downloads
 ## HappyBeam [link](http://www.happybeamapp.com/)
 Android app to help you develop your meditation skills
 
-## Gathercam [link](https://gathercam.co)
-First place Startup Weekend 2014
-Photo aggregator via social media and hashtags for weddings and events
-
-## ChargeForward [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
-FinApps 2014 3rd place Winner ($10,000 prize!)
-Android Wear application for hands free credit card selection
-
 ## SparkStart.io [link](http://www.sparkstart.io)
 Spark Start website
 
-## SafetyNet (ATT Hackathon)
-Web operations platform for first responder managment.
-Won: 1st $1000 best public safety app, 1st $1000 ATT WebRTC prize, and 2nd place $250 telerik prize at the public safety ATT Hackathon. 2014
-
-## Atlanta StartUp Jobs [link](http://www.atlantastartupjobs.com)
-See job postings from Atlanta's top startups.
-
-## SparkChat [link](http://kcoleman.me/chat)
-Chat with me when I am gTalk.  Still in alpha version.  Currently trying to port it to [Meteor](https://www.meteor.com/) when I have time.
+## SparkChat
+Chat with me when I am gTalk. in alpha.  Currently trying to port it to [Meteor](https://www.meteor.com/) when I have time.
 
 ## Focused Care Solutions
 Monitor healthcare member's health remotely
