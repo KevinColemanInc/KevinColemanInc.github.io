@@ -21,17 +21,23 @@ Read about us on [Uber's blog](https://devblog.uber.com/outside-hack-winners-cre
 Natural Language Processing algorithm for improving Sear's Review recommendations.
 Built on Apigee and NodeJs
 
-## Craftia (ProtoHack Austin 1st place)
+## Craftia (1st place ProtoHack Austin )
 Craft social platform for Indian women
 
-## Gathercam (First place Startup Weekend 2014)
+## Gathercam (1st place Startup Weekend 2014)
 Photo aggregator via social media and hashtags for weddings and events
 
-## ChargeForward (FinApps 2014 $10,000 prize Winner) [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
+## ChargeForward ($10,000 prize Winner FinApps 2014) [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
 Android Wear application for hands free credit card selection
 
 ## SafetyNet (1st best public safety, 1st att webrtc prize, 2nd telerik prize at ATT hackathon)
 Web operations platform for first responder managment.
+
+## Anonymous BTC SMS [link](https://anonymousbtcsms.com)
+Anonymously send and receive SMS messages with bitcoin.  Built during [Hacker Paradise](http://www.hackerparadise.org/) South America 2017
+
+## We Upgrade iOS [link](https://weupgradeios.com)
+Flat rate iOS upgrades for small business owners.
 
 ## Atlanta StartUp Jobs [link](http://www.atlantastartupjobs.com)
 See job postings from Atlanta's top startups.

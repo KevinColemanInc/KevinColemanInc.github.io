@@ -4,6 +4,7 @@ title: "Contact"
 comments: true
 sharing: true
 footer: true
+primary-button: true
 ---
 <div class="container">
   <div class="row" style="margin-left: 0px">
