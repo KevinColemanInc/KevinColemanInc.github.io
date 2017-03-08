@@ -8,20 +8,16 @@ permalink: /projects/
 ---
 Some things I've built like…
 
-## Trump Facts (TADHackathon Orlando Winner) [link](https://trumpfacts.sparkstart.io)
+## Trump Facts (1st place TADHackathon Orlando) [link](https://trumpfacts.sparkstart.io)
 Send Trump facts to your Trump supporting friends so they can stay up to date on their favorite candidate. [TADHack winners](http://blog.tadhack.com/2016/10/16/tadhack-2016-winners/).
+
+## Uber Outside Hack Winner
+[Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/) about the project.
 
 ## [Stranded By Trump](https://strandedbytrump.com)
 Information site to help immigrants effected by Trump's immigration bans.
 
-## Uber Outside Hack Winner
-Read about us on [Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/).
-
-## Sentimas [link](http://challengepost.com/software/sentimus-edegx)
-Natural Language Processing algorithm for improving Sear's Review recommendations.
-Built on Apigee and NodeJs
-
-## Craftia (1st place ProtoHack Austin )
+## Craftia (1st place ProtoHack Austin)
 Craft social platform for Indian women
 
 ## Gathercam (1st place Startup Weekend 2014)
@@ -31,16 +27,16 @@ Photo aggregator via social media and hashtags for weddings and events
 Android Wear application for hands free credit card selection
 
 ## SafetyNet (1st best public safety, 1st att webrtc prize, 2nd telerik prize at ATT hackathon)
-Web operations platform for first responder managment.
+Web operations platform for first responder managment
 
 ## Anonymous BTC SMS [link](https://anonymousbtcsms.com)
 Anonymously send and receive SMS messages with bitcoin.  Built during [Hacker Paradise](http://www.hackerparadise.org/) South America 2017
 
 ## We Upgrade iOS [link](https://weupgradeios.com)
-Flat rate iOS upgrades for small business owners.
+Flat rate iOS upgrades for small business owners
 
 ## Atlanta StartUp Jobs [link](http://www.atlantastartupjobs.com)
-See job postings from Atlanta's top startups.
+See job postings from Atlanta's top startups
 
 ## SparkLink [link](http://www.SparkLink.io/)
 App store linking service for small businesses trying to increase downloads
@@ -50,6 +46,10 @@ Android app to help you develop your meditation skills
 
 ## SparkStart.io [link](http://www.sparkstart.io)
 Spark Start website
+
+## Sentimas [link](http://challengepost.com/software/sentimus-edegx)
+Natural Language Processing algorithm for improving Sear's Review recommendations.
+Built on Apigee and NodeJs
 
 ## SparkChat
 Chat with me when I am gTalk. in alpha.  Currently trying to port it to [Meteor](https://www.meteor.com/) when I have time.
