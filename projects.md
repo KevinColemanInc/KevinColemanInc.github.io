@@ -38,10 +38,10 @@ Flat rate iOS upgrades for small business owners
 ## Atlanta StartUp Jobs [link](http://www.atlantastartupjobs.com)
 See job postings from Atlanta's top startups
 
-## SparkLink [link](http://www.SparkLink.io/)
+## SparkLink 
 App store linking service for small businesses trying to increase downloads
 
-## HappyBeam [link](http://www.happybeamapp.com/)
+## HappyBeam
 Android app to help you develop your meditation skills
 
 ## SparkStart.io [link](http://www.sparkstart.io)
