@@ -8,7 +8,7 @@ permalink: /projects/
 ---
 Some things I've built like…
 
-## Trump Facts (1st place TADHackathon Orlando) [link](https://trumpfacts.sparkstart.io)
+## Trump Facts (1st place TADHackathon Orlando)
 Send Trump facts to your Trump supporting friends so they can stay up to date on their favorite candidate. [TADHack winners](http://blog.tadhack.com/2016/10/16/tadhack-2016-winners/).
 
 ## Uber Outside Hack Winner
