@@ -30,7 +30,7 @@ Android Wear application for hands free credit card selection
 Web operations platform for first responder managment
 
 ## Anonymous BTC SMS [link](https://anonymousbtcsms.com)
-Anonymously send and receive SMS messages with bitcoin.  Built during [Hacker Paradise](http://www.hackerparadise.org/) South America 2017
+Anonymously send and receive SMS messages with bitcoin.
 
 ## We Upgrade iOS [link](https://weupgradeios.com)
 Flat rate iOS upgrades for small business owners
