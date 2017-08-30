@@ -28,7 +28,7 @@ Serverless technologies are awesome for kicking up microservices rather than blo
 
 This describes on to make a microservice for delivering avatar images using the serverless framework with nodejs.
 
-# screen cap of Zugata
+<img src="/images/avatar_images/directory.png">
 
 # Source
 If you want to jump ahead to deploy, the [source code for this blog post is here](https://github.com/kevincolemaninc/letter-avatar-serverless).  `readme.md` has information on how to configure AWS Lambda.
