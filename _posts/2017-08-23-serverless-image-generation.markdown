@@ -198,16 +198,16 @@ Unfortunately, AWS does not support all of the configuration we need to do to ge
 ## Step 5a. Enable Binary Support for API Gateway
 Following this image, we need to add "*/*" to our binary media type.  API Gateway will look at the accept headers of the web request to determine whether or not to use the binary response.  If the accept headers don't exactly match what is listed here, the API will return JSON instead of our lovely png.  I opt for `*/*` because our API should always return a PNG, not matter what the accept headers are.
 
-<img src='images/avatar_images/binary_support.png' />
+<img src='/images/avatar_images/binary_support.png' />
 
 ## Step 5b. Configure Lambda function permissions
 In the API Gateway page click "Resources" -> "GET" -> "Integration request"
 
-<img src='images/avatar_images/aws_resources.png' />
+<img src='/images/avatar_images/aws_resources.png' />
 
 Now click on the "pencil" icon next to the lambda function
 
-<img src='images/avatar_images/aws_edit.png' />
+<img src='/images/avatar_images/aws_edit.png' />
 
 and then click on the check box.  This will trigger an alert saying it needs to add a permission to AWS lambda.  Click ok, and continue.
 
