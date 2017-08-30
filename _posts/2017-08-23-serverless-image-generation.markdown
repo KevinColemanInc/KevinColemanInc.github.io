@@ -181,19 +181,19 @@ Successful deploy output
   Sucessful deploy output:
 
       Service Information
-      service: modernwaffle
+      service: letter-avatar
       stage: dev
       region: us-east-1
+      stack: letter-avatar-dev
       api keys:
         None
       endpoints:
-        GET - https://{app}.execute-api.us-east-1.amazonaws.com/dev/profilePic/{initials}
+        GET - https://{appId}.execute-api.us-east-1.amazonaws.com/dev/letterAvatar/{initials}
       functions:
-        profilePic: modernwaffle-dev-profilePic
+        profilePic: letter-avatar-dev-profilePic
 ```
-
 # Step 5. Configure AWS Lambda
-Unfortunately, AWS does not support all of the configuration we need to do to get this working via their API yet.  So we will need to manually go into our aws console to continue our configurations.
+Unfortunately, AWS does not support all of the configuration we need to do to get this working via their API yet.  So we will need to manually go into our AWS console to continue our configurations.
 
 ## Step 5a. Enable Binary Support for API Gateway
 Following this image, we need to add "*/*" to our binary media type.  API Gateway will look at the accept headers of the web request to determine whether or not to use the binary response.  If the accept headers don't exactly match what is listed here, the API will return JSON instead of our lovely png.  I opt for `*/*` because our API should always return a PNG, not matter what the accept headers are.
