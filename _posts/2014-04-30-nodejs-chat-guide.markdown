@@ -5,7 +5,6 @@ date: 2014-04-30 12:40:07 -0400
 comments: true
 categories: 
 ---
-
 ## How I built the chat application for my blog.
 
 I have been chatting on wizpert offering technical support for questions and I was inspired to add a chatting aspect to my blog.  Feel free to hit me up on any Javascript, Ruby on Rails, or general programming questions.
