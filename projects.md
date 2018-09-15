@@ -6,7 +6,7 @@ sharing: true
 footer: true
 permalink: /projects/
 ---
-Some things I've built like…
+Some things I've built
 
 ## Trump Facts (1st place TADHackathon Orlando)
 Send Trump facts to your Trump supporting friends so they can stay up to date on their favorite candidate. [TADHack winners](http://blog.tadhack.com/2016/10/16/tadhack-2016-winners/).
@@ -14,7 +14,7 @@ Send Trump facts to your Trump supporting friends so they can stay up to date on
 ## Uber Outside Hack Winner
 [Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/) about the project.
 
-## [Stranded By Trump](https://strandedbytrump.com)
+## Stranded By Trump
 Information site to help immigrants effected by Trump's immigration bans.
 
 ## Craftia (1st place ProtoHack Austin)
@@ -31,9 +31,6 @@ Web operations platform for first responder managment
 
 ## Anonymous BTC SMS [link](https://anonymousbtcsms.com)
 Anonymously send and receive SMS messages with bitcoin.
-
-## We Upgrade iOS [link](https://weupgradeios.com)
-Flat rate iOS upgrades for small business owners
 
 ## Atlanta StartUp Jobs [link](http://www.atlantastartupjobs.com)
 See job postings from Atlanta's top startups
@@ -71,12 +68,6 @@ Maintained Ruby on Rails [Spree](http://spreecommerce.com/) e-commerce store wit
 
 ## Crowdfunding platform
 Simple crowdfunding platform
-
-## FIRST Robotics Scouting website '12 [link](http://ditu2012scouting.herokuapp.com/)
-Web application to assist robotics teams with their scouting for the 2012 robotics season. Github: [Team5454/RingItUp2012-2013](https://github.com/Team5454/RingItUp2012-2013)
-
-## TuDew [link](http://tudew.herokuapp.com/)
-To do list application in RoR. Github: [KevinColemanInc/TuDew](https://github.com/KevinColemanInc/TuDew)
 
 ## Startup weekend/hackathon projects
 * [FoodLoop](/blog/2014/06/21/goodie-hack-number-2/) - learn about food in your community
