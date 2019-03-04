@@ -10,7 +10,7 @@ categories:
 
 If you're a scammer, please don't read this. Everyone else keeps going. :)
 
-I created AvoVietnam, a React Native dating app [to connect Vietnamese women with foreign men](https://www.avovietnam.com). I have had an influx of registrations of scammers trying to defraud my female Vietnamese users. [Their basic strategy](https://vietnamnews.vn/society/372275/scams-break-womens-hearts-bank-accounts.html) is get a girl to trust them with promises of love and marriage. They tell their victim they want to protect and take care of them so they will send them some money to buy a safe car or even a house, but of course, there is a transfer fee the girl must pay.
+I created AvoVietnam, a React Native dating app [to connect Vietnamese women with foreign men](https://www.avovietnam.com). I have had an influx of registrations of scammers trying to defraud my female Vietnamese users. [Their basic strategy](https://vietnamnews.vn/society/372275/scams-break-womens-hearts-bank-accounts.html) is get a girl to trust them with promises of love and marriage. They tell their victim they want to protect and take care of them. The scammer will offer to send them some money to buy a safe car or even a house, but of course, there is a transfer fee the girl must pay.
 
 Most of these scammers are located in North and West Africa. They would upload attractive photos of western men with jobs like airline pilot or military captain and a cute puppy, but their GPS and IP address would say they lived in a shack in Nigeria.
 
@@ -20,7 +20,7 @@ I am going to go over a few of my techniques for stopping low-tech scammers from
 
 ## Shadow banning
 
-When a user has been marked as a scammer, rather than kicking them off the platform, this signaling that they have been caught and thus they would just create a new account, I would shadow ban their account. When you are shadow banned, your profile and messages are hidden from all of the other users and your account can only see a static list of fake profiles. The scammer will think everyone is ignoring them and maybe there are not many active users on the app.
+When a user has been marked as a scammer, rather than kicking them off the platform and signaling that they have been caught, I would shadow ban their account. When you are shadow banned, your profile and messages are hidden from all of the other users and your account can only see a static list of fake profiles. The scammer will think everyone is ignoring them and maybe there are not many active users on the app.
 
 Stopping these scammers is like playing whack-a-mole. I want to slow them down as much as possible
 
