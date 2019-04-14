@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Rails foreign key constraints"
-date: 2019-02-07 01:49:55 -0400
+title: "How and when to add foreign key constraints"
+date: 2019-03-14 01:49:55 -0400
 comments: true
 categories: 
 ---
