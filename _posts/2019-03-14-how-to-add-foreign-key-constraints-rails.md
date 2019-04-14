@@ -22,7 +22,7 @@ puts "company exists!" if user.company_id
 puts "company exists!" if user.company.id
 ```
 
-If the company is deleted, but the users are not deleted with the company, you might be accidentally invaliding your models preventing you from saving any attribute changes!
+If the company is deleted, but the users are not deleted with the company, you might be accidentally invalidating your models, thus preventing you from saving any attribute changes!
 
 ```ruby
 class User < ApplicationRecord
@@ -36,7 +36,7 @@ wat. I can't save the name if the company isn't there?
 
 ## Adding foreign key constraints
 
-In Rails 5, adding foreign key constraints was added to have the database protect the integrity of associated data. Once a foreign key constraint is defined, your database will not allow you to remove records that are required by other tables. It will also add an index to that column which will increase read speeds when you use this column in a join or where query.
+In Rails 5, adding foreign key constraints was added to have the database protect the integrity of associated data. Once a foreign key constraint is defined, your database will not allow you to remove records that are required by other tables.
 
 ```ruby
 add_foreign_key :users, :companies
@@ -44,7 +44,7 @@ add_foreign_key :users, :companies
 
 <img src="/images/yeet_dba-logo.png" alt="logo of the yeet_dba gem" title="logo of the yeet_dba gem" />
 
-A quick way to add foreign key constraints to your entire rails schema is to use the [yeet_dba](https://github.com/kevincolemaninc/yeet_dba) gem. `yeet_dba` includes rake tasks and generators that scan your entire database searching for columns missing foreign key constraints and indexes. If the data is valid, it can add the foreign key index speeding up your joins and where queries or if the data is invalid, it will help you resolve the problem.
+A quick way to add foreign key constraints to your entire rails schema is to use the [yeet_dba](https://github.com/kevincolemaninc/yeet_dba) gem. `yeet_dba` includes rake tasks and generators that scan your entire database searching for columns missing foreign key constraints. If the data is valid, it can add the foreign key constraint speeding up your joins and where queries or if the data is invalid, it will help you resolve the problem.
 
 By adding foreign key constraints to your database you reduce N+1 calls, improve join and where query performance, and prevent unexpected failures with missing associations.
 
@@ -52,3 +52,4 @@ By adding foreign key constraints to your database you reduce N+1 calls, improve
 
 - [lol_dba](https://github.com/plentz/lol_dba) - This gem helps find indexes that are missing, but not foreign keys.
 - [Postgres foreign key guide](http://www.postgresqltutorial.com/postgresql-foreign-key/)
+- [Rails foreign key constraints](https://www.kcoleman.me/2019/03/14/how-to-add-foreign-key-constraints-rails.html)
