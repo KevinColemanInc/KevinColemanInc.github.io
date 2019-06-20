@@ -8,71 +8,71 @@ permalink: /projects/
 ---
 Some things I've built
 
-## [Fraud detection with Rails](/2019/02/07/fraud-detection.html)
+### [Fraud detection with Rails](/2019/02/07/fraud-detection.html)
 Techniques I used to identify and shadow ban malicious users on a social network
 
-## [yeet_dba gem](http://github.com/kevincolemaninc/yeet_dba)
+### [yeet_dba gem](http://github.com/kevincolemaninc/yeet_dba)
 Automatically add foreign key constraints to your rails db.
 
-## Uber Outside Hack Winner
+### Uber Outside Hack Winner
 [Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/) about the project.
 
-## Stranded By Trump
+### Stranded By Trump
 Information site to help immigrants effected by Trump's immigration bans.
 
-## Craftia (1st place ProtoHack Austin)
+### Craftia (1st place ProtoHack Austin)
 Craft social platform for Indian women. Craftia empowered Indian women start local crafting businesses by connecting them with other crafters.
 
-## Gathercam (1st place Startup Weekend 2014)
+### Gathercam (1st place Startup Weekend 2014)
 Photo aggregator via social media and hashtags for weddings and events
 
-## ChargeForward ($10,000 prize Winner FinApps 2014) [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
+### ChargeForward ($10,000 prize Winner FinApps 2014) [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
 Android Wear application for hands free credit card selection
 
-## SafetyNet (1st best public safety, 1st att webrtc prize, 2nd telerik prize at ATT hackathon)
+### SafetyNet (1st best public safety, 1st att webrtc prize, 2nd telerik prize at ATT hackathon)
 Web operations platform for first responder managment.
 
-## Anonymous BTC SMS
+### Anonymous BTC SMS
 Anonymously send and receive SMS messages with bitcoin.
 
-## Atlanta StartUp Jobs
+### Atlanta StartUp Jobs
 See job postings from Atlanta's top startups
 
-## SparkLink 
+### SparkLink 
 App store linking service for small businesses trying to increase downloads
 
-## HappyBeam
+### HappyBeam
 Android app to help you develop your meditation skills
 
-## SparkStart.io [link](http://www.sparkstart.io)
+### SparkStart.io [link](http://www.sparkstart.io)
 Spark Start website
 
-## Sentimas [link](http://challengepost.com/software/sentimus-edegx)
+### Sentimas [link](http://challengepost.com/software/sentimus-edegx)
 Natural Language Processing algorithm for improving Sear's Review recommendations.
 Built on Apigee and NodeJs
 
-## SparkChat
+### SparkChat
 Chat with me when I am gTalk. in alpha.  Currently trying to port it to [Meteor](https://www.meteor.com/) when I have time.
 
-## Focused Care Solutions
+### Focused Care Solutions
 Monitor healthcare member's health remotely
 
-## BitcoinFTW
+### BitcoinFTW
 Bitcoin algorithm trading platform built in C# and RoR.
 
-## Atlanta Botanical Gardens Holiday Nights ticketing platform
+### Atlanta Botanical Gardens Holiday Nights ticketing platform
 Custom built ticketing platform with mobile app that processed over 200k tickets.
 
-## Freshtix [link](http://freshtix.com)
+### Freshtix [link](http://freshtix.com)
 Ticketing platform for small events in Atlanta
 
-## TA Ticket Printing [link](http://taticketprinting.com)
+### TA Ticket Printing [link](http://taticketprinting.com)
 Maintained Ruby on Rails [Spree](http://spreecommerce.com/) e-commerce store with customizable inventory
 
-## Crowdfunding platform
+### Crowdfunding platform
 Simple crowdfunding platform
 
-## Startup weekend/hackathon projects
+### Startup weekend/hackathon projects
 * [FoodLoop](/blog/2014/06/21/goodie-hack-number-2/) - learn about food in your community
 * QuitFor (SWATL 3rd place) - help friends quit smoking
 * Lendr (SWORL 3rd place) [link](http://lendrapp.herokuapp.com/)- lend money to friends Github: [KevinColemanInc/lendr](https://github.com/KevinColemanInc/lendr)
