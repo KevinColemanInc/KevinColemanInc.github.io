@@ -10,7 +10,7 @@ categories:
 
 If you're a scammer, please don't read this. Everyone else keeps going. :)
 
-I created AvoVietnam, a React Native dating app [to connect Vietnamese women with foreign men](https://www.avovietnam.com). I have had an influx of registrations of scammers trying to defraud my female Vietnamese users. [Their basic strategy](https://vietnamnews.vn/society/372275/scams-break-womens-hearts-bank-accounts.html) is get a girl to trust them with promises of love and marriage. They tell their victim they want to protect and take care of them. The scammer will offer to send them some money to buy a safe car or even a house, but of course, there is a transfer fee the girl must pay.
+I created the AvoVietnam mobile app [to connect Vietnamese with foreigns](https://www.avovietnam.com). I have had an influx of registrations of scammers trying to defraud my female Vietnamese users. [Their basic strategy](https://vietnamnews.vn/society/372275/scams-break-womens-hearts-bank-accounts.html) is get a girl to trust them with promises of love and marriage. They tell their victim they want to protect and take care of them. The scammer will offer to send them some money to buy a safe car or even a house, but of course, there is a transfer fee the girl must pay.
 
 Most of these scammers are located in North and West Africa. They would upload attractive photos of western men with jobs like airline pilot or military captain and a cute puppy, but their GPS and IP address would say they lived in a shack in Nigeria.
 
