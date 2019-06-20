@@ -8,6 +8,12 @@ permalink: /projects/
 ---
 Some things I've built
 
+## [Fraud detection with Rails](/2019/02/07/fraud-detection.html)
+Techniques I used to identify and shadow ban malicious users on a social network
+
+## [yeet_dba gem](http://github.com/kevincolemaninc/yeet_dba)
+Automatically add foreign key constraints to your rails db.
+
 ## Uber Outside Hack Winner
 [Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/) about the project.
 
