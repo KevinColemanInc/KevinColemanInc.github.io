@@ -11,7 +11,7 @@ permalink: /about/
 
 ## Who am I?
 
-Ruby on Rails developer at Spark Start. Author of Atlanta Startup Jobs.
+Software Engineer at Spark Start. I code in Python, Ruby, and Javascript.
 
 ## Are you avaliable for consulting?
 

@@ -16,7 +16,7 @@
 title: Kevin Coleman
 email: kevin.coleman@sparkstart.io
 description: > # this means to ignore newlines until "baseurl:"
-  solves problems for businesses with Ruby on Rails.
+  solves problems for businesses with Software.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.kcoleman.me" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: kevincolemaninc
