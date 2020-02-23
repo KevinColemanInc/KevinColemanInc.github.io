@@ -11,7 +11,7 @@ permalink: /about/
 
 ## Who am I?
 
-Software Engineer at Spark Start. I code in Python, Ruby, and Javascript.
+Software Engineer at Spark Start. I code in Javascript, Python, and Ruby.
 
 ## Are you avaliable for consulting?
 
