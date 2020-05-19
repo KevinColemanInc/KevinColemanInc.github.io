@@ -8,6 +8,9 @@ permalink: /projects/
 ---
 Some things I've built
 
+### [Captrav](captrav.com)
+Parse corperate emails to identify cost savings from travel receipts
+
 ### [Fraud detection with Rails](/2019/02/07/fraud-detection.html)
 Techniques I used to identify and shadow ban malicious users on a social network
 
