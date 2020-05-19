@@ -15,7 +15,7 @@ Techniques I used to identify and shadow ban malicious users on a social network
 Automatically add foreign key constraints to your rails db.
 
 ### Uber Outside Hack Winner
-[Uber's blog](https://devblog.uber.com/outside-hack-winners-create-an-app-that-merges-traffic-conditions-with-uber/) about the project.
+[Uber's blog](https://eng.uber.com/outside-hacks/) about the project.
 
 ### Stranded By Trump
 Information site to help immigrants effected by Trump's immigration bans.
