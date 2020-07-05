@@ -12,6 +12,8 @@ categories:
 
 Design a web crawler that fetches every page on en.wikipedia.org exactly 1 time. You have 10,000 servers you can use and you are not allowed to fetch a URL more than once. If a URL fails to be fetched (because of a timeout or server failure), it can be discarded.
 
+### 👉👉Have a question? Join our FB group: [System Designers](https://www.facebook.com/groups/3331243270259787)
+
 
 ##  Related Companies
 
@@ -123,19 +125,16 @@ For this, we will need to experiment with timeouts to determine when we are rate
 
 #### Pros
 
-
-
 1. Simple
 
 
 #### Cons
 
-
-
 1. Does not utilize the 10k servers
 2. Wastes CPU cycles waiting for the web request to complete
 3. A server failure results in complete data loss
 
+#### 👉👉Have a question? Join our FB group: [System Designers](https://www.facebook.com/groups/3331243270259787)
 
 ### Option 2: Distributed Systems
 
@@ -193,7 +192,7 @@ Borrowing from [Kafka's system design](https://kafka.apache.org/documentation/#d
 If an entire group fails, we can use the technique called "Consistent hashing" with log(M) hashing algorithms to evenly distribute the load, where M is the number of groups. When a URL is found, it is hashed with k hashing functions
 
 
-<img src="/images/consistent-hashing.png" alt="Example of how Consistent Hasing" title="Example of how Consistent Hasing" />
+<img src="/images/consistent-hashing.png" alt="Example of how Consistent Hashing" title="Example of how Consistent Hashing" />
 
 [[Source](https://docs.google.com/presentation/d/1BOWsk4L68pDx7u1GpXF-NqOTejrAffsJmdolQVCnO3Q/edit#slide=id.p)]
 
@@ -210,6 +209,8 @@ If an entire group fails, we can use the technique called "Consistent hashing" w
 
 *   Despite randomly assigning URLs to each group, a single group may get unlucky and be assigned either a disproportionately large number of URLs or URLs that are larger and take longer to parse.
 
+
+#### 👉👉Have a question? Join our FB group: [System Designers](https://www.facebook.com/groups/3331243270259787)
 
 ##  Additional Reading
 
