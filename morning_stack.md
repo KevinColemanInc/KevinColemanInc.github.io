@@ -5,6 +5,36 @@ footer: true
 permalink: /morning-stack/
 ---
 
+## Fall 2020 (San Francisco, SF)
+
+### 6:30a - ⏰Alarm
+I use an battery operated travel alarm clock instead of using my iPhone alarm, because I will get back in bed and start consuming news for 30+ minutes.
+
+### 6:35a - 😁Basics
+- Brush teeth
+- Get dressed
+- Meditate (before the coffee kicks in)
+
+### 7:05a - ☕️Coffee
+- 16g of Arabica Coffee from Columbia
+- Update my body tracking spreadsheet
+- Post on LinkedIn
+- Review Email
+- Complete Todoist tasks
+- Anki Flash cards
+- Input my diet into MyFitnessPal
+
+### 8:30a - 🚴‍♂️Bike to the gym
+
+### 9:00a - 💪Gym
+- Fitness SF workout (5x per week)
+
+### 10:00a - 🚴‍♂️Back home
+- Bike back home
+- Start work
+
+## Summer 2020 (Boulder, CO)
+
 *no breakfast except for coffee with milk
 
 ### 6:30a - ⏰Alarm
