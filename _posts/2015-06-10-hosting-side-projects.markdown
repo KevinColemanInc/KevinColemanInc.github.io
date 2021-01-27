@@ -62,4 +62,4 @@ I really like [Mailchimp's Mandrill](http://mandrill.com).  I have been using th
 # Free SSL certs
 Another sweet trick you can do for your side project websites is to use [Cloudflare](http://cloudflare.com) to deliver valid SSL certificates for your projects.  From an SEO perspective, google loves SSL and from a safety and privacy perspective users love SSL.  You can read up on how to do with [here](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/).  
 
-It took me 15 minutes to configure [kcoleman.me](/) and [AtlantaStartupJobs.com](http://AtlantaStartupJobs.com) to be behind Cloudflare.
+It took me 15 minutes to configure [https://kcoleman.me](/) and [AtlantaStartupJobs.com](http://AtlantaStartupJobs.com) to be behind Cloudflare.
