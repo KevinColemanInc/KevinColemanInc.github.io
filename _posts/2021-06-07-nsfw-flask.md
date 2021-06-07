@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "NSFW Image detection on Digital Ocean Apps"
-date: 2021-01-22 01:49:55 -0400
+date: 2021-06-07 01:49:55 -0400
 comments: true
 categories: 
 ---
@@ -24,7 +24,7 @@ The resized image is categorized using the [attached model](https://github.com/K
 
 Once the prediction is created, we clean up after ourselves by deleting the image from the disk and return the response.
 
-On the client, these scores need to be converted to 3 states:
+On the client, these scores are converted to 3 states:
 
 1. Definitely Adult Content
 2. Unknown
