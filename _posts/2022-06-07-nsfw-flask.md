@@ -12,6 +12,10 @@ categories:
 
 I built a low-cost NSFW API hosted on [Digital Ocean's new App Platform](https://docs.digitalocean.com/products/app-platform/).
 
+### Updated: Added second model: Bumble's private_detector
+
+I added [Bumble's Private Detector](https://bumble.com/help/what-is-private-detector) to the model host so both models can be leveraged. Both models can be hosted on FlyIO's low-cost servers for about $25/mo.
+
 ### How do image tagging ML models work?
 
 Making predictions based on images involves two basic steps: training the data and then processing the prediction. How to train the ML model can be found in the Github repo: [GantMan/nsfw_model](https://github.com/GantMan/nsfw_model#training-folder-contents).
