@@ -8,7 +8,7 @@ categories:
 
 <img src="/images/hot-dogs.jpg" alt="row of hot dogs with various sauces and condiments" title="row of hot dogs with various sauces and condiments" class="banner-img" />
 
-## NSWF Porn detection microservice
+## NSFW Porn detection microservice
 
 I built a low-cost NSFW API hosted on [Digital Ocean's new App Platform](https://docs.digitalocean.com/products/app-platform/).
 
