@@ -3,7 +3,7 @@ layout: post
 title: "Rails Patterns: Builders and Models"
 date: 2015-06-03 09:23:38 +0200
 comments: true
-categories: rails, ruby
+categories: rails ruby
 ---
 <img src="/images/sf-bridge.jpg" alt="bridge" title="Rails Patterns: Builders and Models" class="banner-img"/>
 

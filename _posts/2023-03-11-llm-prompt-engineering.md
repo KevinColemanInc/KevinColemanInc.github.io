@@ -3,7 +3,7 @@ layout: post
 title: "Batch Prompting (cost reduction for LLMs/ChatGPT)"
 date: 2023-03-11 01:49:55 -0400
 comments: true
-categories: llm, prompt-engineering, chatgpt
+categories: llm prompt-engineering chatgpt
 ---
 
 <img src="/images/batch_of_cookies.jpg" alt="Box of cookies in a wooden baking box" title="Box of cookies in a wooden baking box" class="banner-img" />
