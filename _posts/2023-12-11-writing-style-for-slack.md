@@ -83,29 +83,24 @@ I always move project conversations from private DMs to public channels, b/c of 
 ## Use this template
 
 
-greeting: Hi {person|team},
-
-
-TLDR: If my message gets long, I will include a 1-line Too Long; Didn't Read to help the reader decide if they actually want to read my message now if it can wait until later.
-
-
-Context and the problem: Here I provide context to the problem, assuming they have no idea what I am talking about. I do not want them to ask follow-up questions, because those add delays. I do not use acronyms.
-
-
-end: A clear, ordered list of questions, sorted to match the context.
-1. Question 1
-2. Question 2
+> greeting: Hi {person|team},
+> 
+> TLDR: If my message gets long, I will include a 1-line Too Long; Didn't Read to help the reader decide if they actually want to read my message now if it can wait until later.
+> 
+> Context and the problem: Here I provide context to the problem, assuming they have no idea what I am talking about. I do not want them to ask follow-up questions, because those add delays. I do not use acronyms.
+> 
+> end: A clear, ordered list of questions, sorted to match the context.
+> 1. Question 1
+> 2. Question 2
 
 Example
 
-```
-Hi team,
-
-The latency graph (dasboard link) to our messaging service (code link) from your service (client code link) increased 15% week over week. We have not made any deployments in 2 weeks (deployment log link) or configuration changes (configuration dashboard link).
-
-1. Has anything changed with the amount of traffic or size of the payload from your system?
-2. Is there someone that can help me investigate this?
-```
+> Hi team,
+> 
+> The latency graph (dasboard link) to our messaging service (code link) from your service (client code link) increased > 15% week over week. We have not made any deployments in 2 weeks (deployment log link) or configuration changes > (configuration dashboard link).
+> 
+> 1. Has anything changed with the amount of traffic or size of the payload from your system?
+> 2. Is there someone that can help me investigate this?
 
 In this example, I assume whoever is on-call knows (almost) nothing abotu their teams' integration with my team's servers. So I provide as much 
 
