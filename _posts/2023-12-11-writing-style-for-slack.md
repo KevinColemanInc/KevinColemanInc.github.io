@@ -102,6 +102,6 @@ Example
 > 1. Has anything changed with the amount of traffic or size of the payload from your system?
 > 2. Is there someone that can help me investigate this?
 
-In this example, I assume whoever is on-call knows (almost) nothing abotu their teams' integration with my team's servers. So I provide as much 
+In this example, I assume whoever is on-call knows (almost) nothing about their teams' integration with my team's servers.
 
 If you have more tips you want to share, send me an email kevin@sparkstart.io
