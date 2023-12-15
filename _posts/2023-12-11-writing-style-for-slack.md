@@ -83,7 +83,7 @@ I always move project conversations from private DMs to public channels, b/c of 
 ## Use this template
 
 
-> greeting: Hi {person|team},
+> greeting: Hi team,
 > 
 > TLDR: If my message gets long, I will include a 1-line Too Long; Didn't Read to help the reader decide if they actually want to read my message now if it can wait until later.
 > 
