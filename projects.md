@@ -13,6 +13,10 @@ Some things I've built
   - [After Death Instructions - Template](https://docs.google.com/document/d/1OrhYPW4b8iNkg-TMNJNc8DtmHnjAISzW5mThY9s2zMg/edit)
   - [Weekly Planner - Template](https://docs.google.com/document/d/15ICuJOQh4TJAgQfCyq7mq4xQJOH-p6Omq3kPvV3hDiw/edit)
   - [yeet_dba gem](https://github.com/kevincolemaninc/yeet_dba)
+  - [fastimage.go](https://github.com/KevinColemanInc/fastimage.go) - Fast image validation
+  - [i18n-translate-go](https://github.com/KevinColemanInc/i18n-translate-go) - Translate i18n files with OpenAI
+  - [NSFW-flask](https://github.com/KevinColemanInc/NSFW-FLASK) - ml service for detecting nsfw images
+  - [nearest-palette](https://github.com/KevinColemanInc/nearest-palette) - detect similar color palletes with vector search
 - [SaaS](#saas)
   - [Captrav](https://www.captrav.com)
   - [Stranded By Trump](#stranded-by-trump)
