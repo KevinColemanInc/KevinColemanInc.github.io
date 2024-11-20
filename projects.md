@@ -143,9 +143,13 @@ Techniques I used to identify and shadow ban malicious users on a social network
 
 ### Awards
 
+#### 2024 NASA Space Apps Top 40 of 9,960
+
+[Geobrains](https://www.spaceappschallenge.org/nasa-space-apps-2024/find-a-team/geobrains/) visualizing probable interactions between geographical values.
+
 #### Uber Outside Hack Winner
 
-[Uber's blog](https://eng.uber.com/outside-hacks/) about the project.
+Uber's blog (dead: eng.uber.com/outside-hacks) about the project.
 
 #### Craftia (1st place ProtoHack Austin)
 
