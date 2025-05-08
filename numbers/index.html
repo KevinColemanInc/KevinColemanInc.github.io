@@ -314,6 +314,21 @@
         });
       }
 
+      milestoneImage.addEventListener("click", () => {
+        milestoneImage.style.display = "none";
+        if (waitingForAnswer) return;
+        waitingForAnswer = false;
+        nextQuestion();
+      });
+
+      failVideo.addEventListener("click", () => {
+        failVideo.pause();
+        failVideo.style.display = "none";
+        if (waitingForAnswer) return;
+        waitingForAnswer = false;
+        nextQuestion();
+      });
+
       function showFailVideo() {
         failVideo.src = failVideos[failIndex];
         failIndex = (failIndex + 1) % failVideos.length;
@@ -322,6 +337,7 @@
 
         failVideo.onended = () => {
           failVideo.style.display = "none";
+          waitingForAnswer = false;
           nextQuestion();
         };
       }
@@ -337,7 +353,10 @@
 
       function showMilestoneMedia(index) {
         const file = milestoneMedia[index];
-        if (!file) return nextQuestion(); // skip if undefined
+        if (!file) {
+          waitingForAnswer = false;
+          return nextQuestion();
+        }
 
         if (file.endsWith(".mp4")) {
           failVideo.src = file;
@@ -345,6 +364,7 @@
           failVideo.play();
           failVideo.onended = () => {
             failVideo.style.display = "none";
+            waitingForAnswer = false;
             nextQuestion();
           };
         } else {
@@ -352,9 +372,25 @@
           milestoneImage.style.display = "block";
           setTimeout(() => {
             milestoneImage.style.display = "none";
+            waitingForAnswer = false;
             nextQuestion();
           }, 5000);
         }
+      }
+
+      let waitingForAnswer = false; // NEW: lock to prevent duplicate number changes
+
+      function preloadAssets() {
+        [...milestoneMedia, ...failVideos].forEach((file) => {
+          if (file.endsWith(".gif")) {
+            const img = new Image();
+            img.src = file;
+          } else if (file.endsWith(".mp4")) {
+            const video = document.createElement("video");
+            video.src = file;
+            video.preload = "auto";
+          }
+        });
       }
 
       function numberToEnglish(n) {
@@ -422,6 +458,9 @@
       }
 
       function nextQuestion() {
+        if (waitingForAnswer) return; // prevent duplicate
+        waitingForAnswer = true;
+
         feedbackEl.textContent = "";
         answerEl.value = "";
         const n = parseInt(digitCountEl.value);
@@ -486,6 +525,9 @@
       });
 
       function checkAnswer() {
+        if (!waitingForAnswer) return; // prevent double submits
+        waitingForAnswer = false;
+
         const user = answerEl.value.trim();
         const correct = currentSequence.join("");
 
@@ -497,21 +539,36 @@
           if (fib.includes(streak) && !seen.has(streak)) {
             seen.add(streak);
             const index = fib.indexOf(streak);
-            if (index !== -1) showMilestoneMedia(index);
-          } else {
-            setTimeout(nextQuestion, 1500);
+            if (index !== -1) {
+              showMilestoneMedia(index); // nextQuestion will be called after media ends
+              return;
+            }
           }
+
+          // fallback for normal correct answers
+          setTimeout(() => {
+            waitingForAnswer = false;
+            nextQuestion();
+          }, 1500);
         } else {
           feedbackEl.textContent = `❌ Incorrect. Answer: ${correct}`;
           streak = 0; // reset streak
           card.classList.add("shake");
           setTimeout(() => card.classList.remove("shake"), 500);
-          showFailVideo();
-          setTimeout(nextQuestion, 1000);
+          showFailVideo(); // nextQuestion will be called after video ends
         }
 
-        updateProgress(); // call this after streak is updated
+        updateProgress();
       }
+
+      window.addEventListener("load", () => {
+        loadVoices();
+        preloadAssets(); // preload all media
+        setTimeout(() => {
+          waitingForAnswer = false;
+          nextQuestion();
+        }, 100);
+      });
 
       submitBtn.onclick = checkAnswer;
       replayBtn.onclick = speakSequence;
