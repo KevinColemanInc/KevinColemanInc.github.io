@@ -17,6 +17,7 @@ Some things I've built
   - [i18n-translate-go](https://github.com/KevinColemanInc/i18n-translate-go) - Translate i18n files with OpenAI
   - [NSFW-flask](https://github.com/KevinColemanInc/NSFW-FLASK) - ml service for detecting nsfw images
   - [nearest-palette](https://github.com/KevinColemanInc/nearest-palette) - detect similar color palletes with vector search
+  - [Numbers](https://www.kcoleman.me/numbers/) - practicing listening
 - [SaaS](#saas)
   - [698 Expat](https://app.698expat.com) - LLM Translations with multiplayer mode
   - [Captrav](https://www.captrav.com)
