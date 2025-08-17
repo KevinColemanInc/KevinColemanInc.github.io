@@ -51,7 +51,7 @@ I think they serve as an excellent compass.  Seeing as these rules have provided
 2. Project a can-do attitude.
 3. Delegate then don’t interfere, but be available to help.
 4. Learn to accommodate a wide variety of personalities.
-5. Don’t tolerate bickering, blame, throwing, or covering up – insist on harmonious teamwork.
+5. Don’t tolerate bickering, blame throwing, or covering up – insist on harmonious teamwork.
 6. Be tolerant of mistakes – up to a limit.
 7. Be intolerant of incompetence.
 8. Encourage constructive dissent.
