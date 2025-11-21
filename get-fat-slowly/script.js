@@ -73,6 +73,7 @@ class MultiSelect {
         }
         this.selectedIds = new Set(validSelections);
         this.renderOptions();
+        this.renderExampleChips();
     }
 
     setValue(newValue) {
@@ -95,7 +96,7 @@ class MultiSelect {
         this.dropdownToggleEl = document.createElement('input');
         this.dropdownToggleEl.type = 'text';
         this.dropdownToggleEl.className = 'multi-select-dropdown-toggle glass-input';
-        this.dropdownToggleEl.placeholder = 'Select or search...';
+        this.dropdownToggleEl.placeholder = 'Search foods…';
         this.dropdownToggleEl.readOnly = true;
         this.containerEl.appendChild(this.dropdownToggleEl);
 
@@ -109,8 +110,13 @@ class MultiSelect {
         this.searchInputEl = document.createElement('input');
         this.searchInputEl.type = 'text';
         this.searchInputEl.className = 'multi-select-search-input glass-input';
-        this.searchInputEl.placeholder = 'Search...';
+        this.searchInputEl.placeholder = 'Search foods…';
         this.dropdownListEl.appendChild(this.searchInputEl);
+
+        // Example hints
+        this.exampleHintEl = document.createElement('div');
+        this.exampleHintEl.className = 'multi-select-examples';
+        this.dropdownListEl.appendChild(this.exampleHintEl);
 
         // Action buttons (Select All / Clear All)
         const actionButtonsEl = document.createElement('div');
@@ -133,6 +139,7 @@ class MultiSelect {
         this.dropdownListEl.appendChild(this.optionsContainerEl);
 
         this.renderOptions();
+        this.renderExampleChips();
     }
 
     renderOptions() {
@@ -173,6 +180,16 @@ class MultiSelect {
             this.searchTerm = e.target.value;
             this.activeOptionIndex = -1; // Reset active option on search
             this.renderOptions();
+            const trimmed = (this.searchTerm || '').trim();
+            this.setExamplesVisible(trimmed.length === 0 && this.isOpen);
+        });
+        this.searchInputEl.addEventListener('focus', () => {
+            if ((this.searchTerm || '').trim().length === 0) {
+                this.setExamplesVisible(true);
+            }
+        });
+        this.searchInputEl.addEventListener('blur', () => {
+            setTimeout(() => this.setExamplesVisible(false), 80);
         });
         // Option selection
         this.optionsContainerEl.addEventListener('change', (e) => {
@@ -201,21 +218,26 @@ class MultiSelect {
     toggleDropdown() {
         this.isOpen = !this.isOpen;
         this.dropdownListEl.style.display = this.isOpen ? 'block' : 'none';
+        this.containerEl.classList.toggle('is-open', this.isOpen);
         if (this.isOpen) {
             this.searchInputEl.focus();
             this.activeOptionIndex = -1; // Reset active option on open
             this.renderOptions();
+            this.setExamplesVisible((this.searchTerm || '').trim().length === 0);
         } else {
             this.searchTerm = ''; // Clear search on close
             this.renderOptions();
+            this.setExamplesVisible(false);
         }
     }
 
     closeDropdown() {
         this.isOpen = false;
         this.dropdownListEl.style.display = 'none';
+        this.containerEl.classList.remove('is-open');
         this.searchTerm = ''; // Clear search on close
         this.renderOptions();
+        this.setExamplesVisible(false);
         this.dropdownToggleEl.focus(); // Return focus to toggle
     }
 
@@ -313,6 +335,50 @@ class MultiSelect {
             activeEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         }
     }
+
+    renderExampleChips() {
+        if (!this.exampleHintEl) return;
+        this.exampleHintEl.innerHTML = '';
+        const examples = this.getExampleLabels();
+        examples.forEach((label) => {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'multi-select-example-chip';
+            chip.textContent = label;
+            chip.addEventListener('click', () => {
+                this.searchInputEl.value = label;
+                this.searchTerm = label;
+                this.activeOptionIndex = -1;
+                this.renderOptions();
+                this.setExamplesVisible(false);
+                this.searchInputEl.focus();
+                this.searchInputEl.setSelectionRange(label.length, label.length);
+            });
+            this.exampleHintEl.appendChild(chip);
+        });
+        if (examples.length === 0) {
+            const helper = document.createElement('div');
+            helper.className = 'multi-select-no-results';
+            helper.textContent = 'Try typing to find foods.';
+            this.exampleHintEl.appendChild(helper);
+        }
+        this.setExamplesVisible(false);
+    }
+
+    getExampleLabels() {
+        const labels = [];
+        for (const option of this.options) {
+            if (!option || !option.label) continue;
+            labels.push(option.label);
+            if (labels.length >= 3) break;
+        }
+        return Array.from(new Set(labels)).slice(0, 3);
+    }
+
+    setExamplesVisible(isVisible) {
+        if (!this.exampleHintEl) return;
+        this.exampleHintEl.style.display = isVisible ? 'grid' : 'none';
+    }
 }
 
 function getCssVarValue(varName, fallback = '') {
@@ -359,6 +425,10 @@ const caloriesPerContainerEl = document.getElementById("calories-per-container")
 const servingsInputEl = document.getElementById("servings-input");
 const frequencyGroupEl = document.getElementById("frequency-group");
 const frequencyHelperEl = document.getElementById("frequency-helper");
+const servingsHelperEl = document.getElementById("servings-helper");
+const stickyCalcBarEl = document.getElementById("sticky-calc-bar");
+const stickyCalcCopyEl = document.getElementById("sticky-calc-copy");
+const stickyCalcBtnEl = document.getElementById("sticky-calc-btn");
 const unitGroupEl = document.getElementById("unit-group");
 const calculateBtnEl = document.getElementById("calculate-btn");
 const dailyExtraEl = document.getElementById("daily-extra");
@@ -503,6 +573,7 @@ function initializeFoodMultiSelect() {
     hideCustomFoodForm();
     resetCustomFoodForm();
     updateFrequencyHelper();
+    updateServingsHelper();
 }
 
 
@@ -559,10 +630,28 @@ function renderSelectedFoodsSummary() {
 
     selectedFoodDetails.forEach(item => {
         const listItem = document.createElement('li');
-        const itemCalories = item.calories * item.perContainer;
+        const perServingCalories = item.calories || 0;
+        const servingsCount = item.perContainer || 1;
+        const itemCalories = perServingCalories * servingsCount;
         const itemLabel = item.bigName || item.name || item.shortName || 'Custom Food';
-        const infoSpan = document.createElement('span');
-        infoSpan.textContent = `${itemLabel} - ${itemCalories} kcal`;
+
+        const left = document.createElement('div');
+        left.className = 'selected-food-left';
+        const title = document.createElement('span');
+        title.className = 'selected-food-title';
+        title.textContent = itemLabel;
+        left.appendChild(title);
+
+        const right = document.createElement('div');
+        right.className = 'selected-food-right';
+        const kcalSpan = document.createElement('div');
+        kcalSpan.className = 'selected-food-kcal';
+        kcalSpan.textContent = `${perServingCalories.toFixed(0)} kcal`;
+        const servingsSpan = document.createElement('div');
+        servingsSpan.className = 'selected-food-servings';
+        servingsSpan.textContent = `x${servingsCount} serving${servingsCount === 1 ? '' : 's'}`;
+        right.appendChild(kcalSpan);
+        right.appendChild(servingsSpan);
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
@@ -570,12 +659,13 @@ function renderSelectedFoodsSummary() {
         removeBtn.className = 'remove-selected-item';
         removeBtn.setAttribute('data-id', item.id);
 
-        listItem.appendChild(infoSpan);
+        listItem.appendChild(left);
+        listItem.appendChild(right);
         listItem.appendChild(removeBtn);
         totalAggregateCalories += itemCalories;
         selectedFoodsListEl.appendChild(listItem);
     });
-    aggregateCaloriesEl.textContent = `Total: ${totalAggregateCalories} kcal`;
+    aggregateCaloriesEl.innerHTML = `Total <span class="aggregate-number">${totalAggregateCalories.toFixed(0)} kcal</span>`;
 }
 
 function updateFrequencyHelper() {
@@ -592,6 +682,17 @@ function updateFrequencyHelper() {
     } else {
         frequencyHelperEl.textContent = '';
     }
+}
+
+function updateServingsHelper() {
+    if (!servingsHelperEl) return;
+    let unitLabel = 'day';
+    if (currentFrequency === 'weekly') {
+        unitLabel = 'week';
+    } else if (currentFrequency === 'monthly') {
+        unitLabel = 'month';
+    }
+    servingsHelperEl.innerHTML = `Servings per <strong>${unitLabel}</strong>`;
 }
 
 function updateCatFatness(value) {
@@ -690,7 +791,7 @@ function renderCustomFoodsList() {
     customFoodsListEl.innerHTML = '';
     if (customFoods.length === 0) {
         const emptyState = document.createElement('li');
-        emptyState.textContent = 'No custom foods yet.';
+        emptyState.textContent = 'Add your go-to snack or drink (e.g., latte, chips, beer).';
         emptyState.style.opacity = '0.6';
         customFoodsListEl.appendChild(emptyState);
         return;
@@ -787,6 +888,18 @@ function updateCaloriesSummary() {
     }
 
     calculateBtnEl.disabled = dailyExtra <= 0;
+    if (stickyCalcBtnEl) {
+        stickyCalcBtnEl.disabled = calculateBtnEl.disabled;
+    }
+    if (stickyCalcCopyEl) {
+        if (dailyExtra > 0) {
+            stickyCalcCopyEl.textContent = `Adds about ${dailyExtra.toFixed(0)} kcal/day`;
+        } else if (cals > 0) {
+            stickyCalcCopyEl.textContent = "Enter servings to unlock Calculate.";
+        } else {
+            stickyCalcCopyEl.textContent = "Add foods and servings to calculate.";
+        }
+    }
 }
 
 // --- Chart and Calculation Logic ---
@@ -953,6 +1066,7 @@ frequencyGroupEl.addEventListener("click", (e) => {
             );
         });
         updateCaloriesSummary();
+        updateServingsHelper();
     }
 });
 
@@ -981,6 +1095,13 @@ calculateBtnEl.addEventListener("click", () => {
     renderChart(lastDailyExtraCalories, currentUnit);
     updateCatFatness(2);
 });
+
+if (stickyCalcBtnEl) {
+    stickyCalcBtnEl.addEventListener("click", () => {
+        if (calculateBtnEl.disabled) return;
+        calculateBtnEl.click();
+    });
+}
 
 // Init
 updateCatFatness(1);
