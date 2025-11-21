@@ -7,47 +7,101 @@ footer: true
 permalink: /projects/
 ---
 
-Some things I've built
+# Some Things I've Built
 
-- [Tools](#tools)
-  - [After Death Instructions - Template](https://docs.google.com/document/d/1OrhYPW4b8iNkg-TMNJNc8DtmHnjAISzW5mThY9s2zMg/edit)
-  - [Weekly Planner - Template](https://docs.google.com/document/d/15ICuJOQh4TJAgQfCyq7mq4xQJOH-p6Omq3kPvV3hDiw/edit)
-  - [yeet_dba gem](https://github.com/kevincolemaninc/yeet_dba)
-  - [fastimage.go](https://github.com/KevinColemanInc/fastimage.go) - Fast image validation
-  - [i18n-translate-go](https://github.com/KevinColemanInc/i18n-translate-go) - Translate i18n files with OpenAI
-  - [NSFW-flask](https://github.com/KevinColemanInc/NSFW-FLASK) - ml service for detecting nsfw images
-  - [nearest-palette](https://github.com/KevinColemanInc/nearest-palette) - detect similar color palletes with vector search
-  - [Numbers](/numbers/) - practicing listening to numbers for language learning
-  - [Get Fat Slowly](/get-fat-slowly/) - evaluate the long term consequences of a daily Starbucks Mocha.
-- [SaaS](#saas)
-  - [698 Expat](https://app.698expat.com) - LLM Translations with multiplayer mode
-  - [Captrav](https://www.captrav.com)
-  - [Stranded By Trump](#stranded-by-trump)
-  - [Anonymous BTC SMS](#anonymous-btc-sms)
-  - [Atlanta StartUp Jobs](#atlanta-startup-jobs)
-  - [SparkLink](#sparklink)
-  - [HappyBeam](#happybeam)
-  - [SparkStart.io](https://www.sparkstart.io)
-  - [Focused Care Solutions](#focused-care-solutions)
-  - [BitcoinFTW](#bitcoinftw)
-  - [SparkChat](#sparkchat)
-  - [Atlanta Botanical Gardens Holiday Nights ticketing platform](#atlanta-botanical-gardens-holiday-nights-ticketing-platform)
-  - [Freshtix](https://freshtix.com)
-  - [TA Ticket Printing](https://taticketprinting.com)
-  - [Crowdfunding platform](#crowdfunding-platform)
-- [Learnings](#learnings)
-  - [Awesome Productivity](https://github.com/KevinColemanInc/awesome-productivity)
-  - [Awesome Privacy](https://github.com/KevinColemanInc/awesome-privacy)
-  - [Fraud detection with Rails](/2019/02/07/fraud-detection.html)
-  - [hackathon projects](#hackathon-projects)
-- [Awards](#awards)
-  - 2023 Future Builders Hackathon (2nd place) - AI generated book sumarization
-  - [Uber Outside Hack Winner](#uber-outside-hack-winner)
-  - Craftia (1st place ProtoHack Austin)
-  - Gathercam (1st place Startup Weekend 2014)
-  - ChargeForward ($10,000 prize Winner FinApps 2014) [youtube](https://www.youtube.com/watch?v=1y-D-5O2dcY)
-  - SafetyNet (1st best public safety, 1st att webrtc prize, 2nd telerik prize at ATT hackathon)
-  - [Sentimas](https://challengepost.com/software/sentimus-edegx)
+## Tools
+- **After Death Instructions – Template**  
+  Google Doc template for organizing personal instructions for loved ones.  
+  [docs.google.com](https://docs.google.com/document/d/1OrhYPW4b8iNkg-TMNJNc8DtmHnjAISzW5mThY9s2zMg/edit)
+
+- **Weekly Planner – Template**  
+  Simple planning system for weekly execution.  
+  [docs.google.com](https://docs.google.com/document/d/15ICuJOQh4TJAgQfCyq7mq4xQJOH-p6Omq3kPvV3hDiw/edit)
+
+- **yeet_dba**  
+  Ruby gem for safely deleting large DB tables.  
+  [github.com](https://github.com/kevincolemaninc/yeet_dba)
+
+- **fastimage.go** – fast image validation  
+  [github.com](https://github.com/KevinColemanInc/fastimage.go)
+
+- **i18n-translate-go** – translate i18n files with OpenAI  
+  [github.com](https://github.com/KevinColemanInc/i18n-translate-go)
+
+- **NSFW-flask** – ML service for NSFW image detection  
+  [github.com](https://github.com/KevinColemanInc/NSFW-FLASK)
+
+- **nearest-palette** – vector search for similar color palettes  
+  [github.com](https://github.com/KevinColemanInc/nearest-palette)
+
+- **Numbers** – listening to numbers for language learning  
+  /numbers/
+
+- **Get Fat Slowly** – analyze long-term impact of caloric habits  
+  /get-fat-slowly/
+
+
+## SaaS
+- **698 Expat** – (deprecated) LLM translations with multiplayer mode  
+  https://app.698expat.com
+
+- **Captrav** – corporate travel expense tracking  
+  (captrav.com)[https://www.captrav.com]
+
+- **SparkStart.io** – hiring workflow automation  
+  (sparkstart.io)[https://www.sparkstart.io]
+
+- **Freshtix** – event ticketing platform  
+  (freshtix.com)[https://freshtix.com]
+
+- **TA Ticket Printing** – ticket printing services  
+  (taticketprinting.com)[https://taticketprinting.com]
+
+- **Stranded By Trump** – Website to support Green Card holders impacted by Trump's immigration policies 
+- **Anonymous BTC SMS** – Receive SMS online with btc payments.
+- **Atlanta Startup Jobs** – (deprecated) job website for finding jobs in Atlanta.
+- **SparkLink** – (details TBD)  
+- **HappyBeam** – Hackathon project for quantifying your meditation sessions
+- **SparkChat** – (details TBD)  
+- **Crowdfunding Platform** – (details TBD)  
+- **Atlanta Botanical Gardens Holiday Nights** – ticketing automation project  
+
+
+## Learnings
+- **Awesome Productivity**  
+  Curated list of productivity tools, techniques, and resources.  
+  (github.com)[https://github.com/KevinColemanInc/awesome-productivity]
+
+- **Awesome Privacy**  
+  Curated list of privacy tools, tips, and best practices.  
+  (github.com)[https://github.com/KevinColemanInc/awesome-privacy]
+
+- **Fraud Detection with Rails**  
+  Blog post on detecting transaction fraud patterns in Rails.  
+  (kcoleman.me)[/2019/02/07/fraud-detection.html]
+
+- **Hackathon Projects**  
+  (details or link to a consolidated page)
+
+
+## Awards
+- **2023 Future Builders Hackathon – 2nd Place**  
+  AI-generated book summarization project.
+
+- **Uber Outside Hack Winner**
+
+- **Craftia – 1st Place (ProtoHack Austin)**
+
+- **Gathercam – 1st Place (Startup Weekend 2014)**
+
+- **ChargeForward – FinApps 2014 ($10,000 Winner)**  
+  https://www.youtube.com/watch?v=1y-D-5O2dcY
+
+- **SafetyNet**  
+  1st Best Public Safety, 1st ATT WebRTC Prize, 2nd Telerik Prize at ATT Hackathon.
+
+- **Sentimas**  
+  [challengepost.com](https://challengepost.com/software/sentimus-edegx)
 
 ### Tools
 
