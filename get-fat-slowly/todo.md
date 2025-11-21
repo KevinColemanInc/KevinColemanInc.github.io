@@ -1,0 +1,21 @@
+- The dropdown should allow selecting multiple items from a list of ~200 options.
+- Must support:
+  - Typing to filter/search options.
+  - Keyboard navigation (Up/Down to move, Enter/Space to select, Esc to close).
+  - Clicking to open/close the menu.
+  - “Select all” and “Clear all” actions.
+- Selected items should appear as removable tags/chips above the dropdown (each with an “x” icon to remove).
+- The component should be easy to integrate:
+  - Accept `options: { id: string | number; label: string }[]` as a prop.
+  - Accept `value: (string | number)[]` for selected IDs.
+  - Accept `onChange: (selectedIds: (string | number)[]) => void` to notify parent when selection changes.
+- Make sure it’s efficient with ~200 items:
+  - Avoid unnecessary re-renders.
+  - Use memoization where it makes sense.
+- Include:
+  - A short example of how to use this component in a parent component, including how to pass a list of about 200 items.
+  - Basic styling so it looks clean and usable out of the box (no UI library required).
+- Add clear comments explaining:
+  - How to add new items to the list.
+  - How to remove items from the list.
+  - How to hook this into a form or state management.

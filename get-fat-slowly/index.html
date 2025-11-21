@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Get Fat Slowly</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Chart.js CDN (UMD, correct MIME) -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <style>
+            /* Apple Glass Theme */
+            :root {
+                color-scheme: dark;
+                --bg-gradient: radial-gradient(
+                    circle at top left,
+                    #3a7bd5,
+                    #181c27
+                );
+                --glass-bg: rgba(22, 25, 38, 0.7);
+                --glass-border: rgba(255, 255, 255, 0.15);
+                --accent: #5ac8fa;
+                --accent-soft: rgba(90, 200, 250, 0.15);
+                --text-main: #f7f8ff;
+                --text-muted: #aab0c7;
+                --danger: #ff453a;
+                --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.6);
+                --radius-lg: 24px;
+                --radius-sm: 999px;
+                --blur: 40px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: var(--bg-gradient);
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                color: var(--text-main);
+            }
+
+            #root {
+                padding: 24px;
+                display: flex;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            /* Container */
+            .app {
+                width: 100%;
+                max-width: 1100px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 32px;
+                backdrop-filter: blur(var(--blur));
+                -webkit-backdrop-filter: blur(var(--blur));
+                padding: 20px 24px;
+                box-shadow: var(--shadow-soft);
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: auto;
+                gap: 18px;
+            }
+
+            .header {
+                grid-column: 1 / -1;
+            }
+
+            #input-panel,
+            #frequency-panel {
+                grid-column: span 1;
+            }
+
+            #projection-panel {
+                grid-column: 1 / -1;
+            }
+
+            @media (max-width: 900px) {
+                .app {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .header {
+                grid-column: 1 / -1;
+                text-align: left;
+                margin-bottom: 4px;
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                color: var(--text-muted);
+                margin-top: 6px;
+                font-size: 0.9rem;
+            }
+
+            .glass-panel {
+                background: var(--glass-bg);
+                border-radius: var(--radius-lg);
+                padding: 16px 18px 22px;
+                border: 1px solid var(--glass-border);
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .glass-panel h2 {
+                margin: 0 0 10px;
+                font-size: 1.1rem;
+            }
+
+            label {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                display: block;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                margin-bottom: 4px;
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: 9px 11px;
+                margin-bottom: 10px;
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                background: rgba(0, 0, 0, 0.35);
+                color: var(--text-main);
+                font-size: 0.9rem;
+                outline: none;
+            }
+
+            input:focus,
+            select:focus {
+                border-color: var(--accent);
+                box-shadow: 0 0 0 1px rgba(90, 200, 250, 0.5);
+            }
+
+            button {
+                padding: 10px 16px;
+                border-radius: var(--radius-sm);
+                border: none;
+                background: linear-gradient(135deg, #0a84ff, #5ac8fa);
+                color: white;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            button:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+            .primary-button {
+                margin-top: 8px;
+                width: 100%;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+            }
+
+            .segmented {
+                display: flex;
+                gap: 6px;
+                margin-bottom: 10px;
+            }
+
+            .segmented button {
+                flex: 1;
+                padding: 8px;
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--text-muted);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 0.8rem;
+            }
+
+            .segmented button.active {
+                background: linear-gradient(135deg, var(--accent), white);
+                color: #000;
+            }
+
+            .helper-text {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                margin-top: 4px;
+            }
+
+            .separator {
+                border: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.16);
+                margin: 14px 0;
+            }
+
+            .summary-cards {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .summary-card {
+                flex: 1;
+                background: var(--accent-soft);
+                border-radius: 18px;
+                padding: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .summary-card .label {
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+            }
+
+            .summary-card .value {
+                font-size: 1.2rem;
+                margin-top: 4px;
+            }
+
+            .chart-shell {
+                margin-top: 18px;
+                border-radius: 24px;
+                padding: 18px;
+                background: rgba(240, 248, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+            }
+
+            .unit-toggle-label {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 6px;
+                gap: 12px;
+            }
+
+            .fine-print {
+                color: var(--text-muted);
+                font-size: 0.75rem;
+                margin-top: 10px;
+            }
+
+            .error-text {
+                color: var(--danger);
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+            }
+
+            .inline-muted {
+                color: var(--text-muted);
+                font-size: 0.8rem;
+            }
+
+            /* Food selector layout */
+            #input-panel {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .food-select-shell {
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 22px;
+                background: rgba(12, 14, 25, 0.5);
+                padding: 12px 14px;
+                position: relative;
+            }
+
+            .multi-select-dropdown-toggle {
+                width: 100%;
+                cursor: pointer;
+                margin-top: 8px;
+                padding: 8px 10px;
+            }
+
+            .multi-select-dropdown-list-container {
+                position: absolute;
+                left: 0;
+                right: 0;
+                background: rgba(9, 10, 20, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                box-shadow: var(--shadow-soft);
+                z-index: 30;
+                margin-top: 8px;
+                padding: 8px;
+            }
+
+            .multi-select-search-input {
+                margin-bottom: 8px;
+            }
+
+            .multi-select-action-buttons {
+                display: flex;
+                justify-content: space-between;
+                gap: 6px;
+                margin-bottom: 8px;
+            }
+
+            .multi-select-action-buttons button {
+                flex: 1;
+                padding: 5px 0;
+                border-radius: 999px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                background: rgba(255, 255, 255, 0.05);
+                color: var(--text-muted);
+                font-size: 0.75rem;
+            }
+
+            .multi-select-action-buttons button:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .multi-select-options-container {
+                max-height: 210px;
+                overflow-y: auto;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 16px;
+                padding: 4px 0;
+            }
+
+            .multi-select-option {
+                display: flex;
+                align-items: center;
+                padding: 6px 10px;
+                cursor: pointer;
+                border-radius: 12px;
+            }
+
+            .multi-select-option:hover,
+            .multi-select-option.active {
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .multi-select-option input[type="checkbox"] {
+                margin-right: 8px;
+                width: 18px;
+                height: 18px;
+                appearance: none;
+                border-radius: 5px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                background: rgba(255, 255, 255, 0.1);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .multi-select-option input[type="checkbox"]:checked {
+                background: var(--accent);
+                border-color: var(--accent);
+            }
+
+            .multi-select-option input[type="checkbox"]:checked::after {
+                content: "✔";
+                font-size: 0.7rem;
+                color: #fff;
+            }
+
+            .multi-select-option label {
+                flex: 1;
+                margin: 0;
+                font-size: 0.85rem;
+                color: var(--text-main);
+            }
+
+            .multi-select-no-results {
+                text-align: center;
+                padding: 8px;
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            }
+
+            .selection-limit {
+                display: flex;
+                justify-content: space-between;
+                padding: 6px 10px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.04);
+                font-size: 0.8rem;
+                color: var(--text-muted);
+            }
+
+            .selection-limit.limit-reached {
+                color: var(--danger);
+                background: rgba(255, 69, 58, 0.08);
+            }
+
+            .cat-wrapper {
+                width: 170px;
+                flex-shrink: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cat-wrapper svg {
+                width: 100%;
+                height: auto;
+            }
+
+            .custom-food-controls {
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 18px;
+                padding: 12px 14px;
+                background: rgba(255, 255, 255, 0.02);
+            }
+
+            .custom-food-toggle {
+                width: 100%;
+                border-radius: 999px;
+                padding: 8px 12px;
+                border: 1px dashed rgba(255, 255, 255, 0.3);
+                background: rgba(255, 255, 255, 0.04);
+                color: var(--text-main);
+                font-size: 0.85rem;
+            }
+
+            .custom-food-form {
+                margin-top: 12px;
+                border-radius: 16px;
+                padding: 12px;
+                background: rgba(10, 12, 24, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                display: none;
+            }
+
+            .custom-food-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 10px;
+            }
+
+            .custom-food-actions {
+                display: flex;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .ghost-button {
+                border-radius: 999px;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                background: transparent;
+                color: var(--text-main);
+                padding: 8px 14px;
+                font-size: 0.85rem;
+                cursor: pointer;
+            }
+
+            .ghost-button.subtle {
+                border-style: dashed;
+                color: var(--text-muted);
+            }
+
+            .custom-foods-list {
+                list-style: none;
+                padding-left: 0;
+                margin: 12px 0 0;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .custom-foods-list li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 6px 10px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.04);
+                font-size: 0.85rem;
+            }
+
+            .custom-foods-list button {
+                border: none;
+                background: transparent;
+                color: var(--danger);
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 0.8rem;
+                padding: 4px 8px;
+                border-radius: 10px;
+            }
+
+            .custom-foods-list button:hover {
+                background: rgba(255, 69, 58, 0.12);
+            }
+
+            #selected-foods-summary {
+                border-radius: 22px;
+                padding: 14px 16px;
+                background: rgba(10, 12, 24, 0.55);
+                border: 1px dashed rgba(255, 255, 255, 0.15);
+            }
+
+            #selected-foods-summary ul {
+                list-style: none;
+                padding-left: 0;
+                margin: 10px 0 12px;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            #selected-foods-summary li {
+                font-size: 0.85rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 6px 10px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.04);
+            }
+
+            .remove-selected-item {
+                border: none;
+                background: transparent;
+                color: var(--danger);
+                font-weight: 600;
+                cursor: pointer;
+                padding: 4px 6px;
+                border-radius: 10px;
+            }
+
+            .remove-selected-item:hover {
+                background: rgba(255, 69, 58, 0.15);
+            }
+
+            #aggregate-calories {
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .essay-panel {
+                grid-column: 1 / -1;
+                line-height: 1.5;
+            }
+
+            .essay-panel h2,
+            .essay-panel h3 {
+                margin-top: 0;
+            }
+
+            .essay-panel ul {
+                padding-left: 20px;
+                color: var(--text-muted);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <div class="app">
+                <div class="header">
+                    <h1>Get Fat Slowly</h1>
+                    <p class="subtitle">
+                        The estimate that a daily surplus of 500 calories leads
+                        to about one pound of weight gain per week comes from
+                        the common rule that roughly 3,500 calories equals one
+                        pound of body fat. This rule is based on the fact that
+                        one pound is about 454 grams, body fat tissue is mostly
+                        fat, and each gram of fat provides about 9 calories of
+                        energy. While real-world weight changes are influenced
+                        by metabolism, activity, and water balance, the
+                        3,500-calorie rule is a useful approximation for
+                        planning and understanding how consistent calorie
+                        surpluses can translate into gradual weight gain over
+                        time.
+                    </p>
+                </div>
+
+                <!-- Left: Inputs -->
+                <div class="glass-panel" id="input-panel">
+                    <h2>1. Choose or enter a food</h2>
+
+                    <div
+                        id="csv-error"
+                        class="error-text"
+                        style="display: none"
+                    ></div>
+
+                    <div
+                        id="multi-select-food-container"
+                        class="food-select-shell"
+                    ></div>
+                    <div class="custom-food-controls">
+                        <button
+                            type="button"
+                            class="custom-food-toggle"
+                            id="show-custom-food-form"
+                        >
+                            + Add Custom Food
+                        </button>
+
+                        <div
+                            id="custom-fields"
+                            class="custom-food-form"
+                            aria-hidden="true"
+                        >
+                            <div class="custom-food-grid">
+                                <div>
+                                    <label for="custom-name" class="field-label"
+                                        >Custom label</label
+                                    >
+                                    <input
+                                        id="custom-name"
+                                        type="text"
+                                        class="glass-input"
+                                        placeholder="e.g., Grandma's Pie"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="custom-cal" class="field-label"
+                                        >Calories per serving</label
+                                    >
+                                    <input
+                                        id="custom-cal"
+                                        type="number"
+                                        class="glass-input"
+                                        placeholder="e.g., 250"
+                                        min="1"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="custom-per" class="field-label"
+                                        >Servings per container</label
+                                    >
+                                    <input
+                                        id="custom-per"
+                                        type="number"
+                                        class="glass-input"
+                                        value="1"
+                                        min="1"
+                                    />
+                                </div>
+                            </div>
+                            <div
+                                id="custom-food-error"
+                                class="error-text"
+                                style="display: none"
+                            ></div>
+                            <div class="custom-food-actions">
+                                <button
+                                    type="button"
+                                    id="add-custom-food-btn"
+                                    class="ghost-button"
+                                >
+                                    Save Custom Food
+                                </button>
+                                <button
+                                    type="button"
+                                    id="cancel-custom-food-btn"
+                                    class="ghost-button subtle"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                        <ul
+                            id="custom-foods-list"
+                            class="custom-foods-list"
+                        ></ul>
+                    </div>
+
+                    <div
+                        id="selected-foods-summary"
+                        class="glass-panel"
+                        style="display: none"
+                    >
+                        <h2>Selected Foods Summary</h2>
+                        <ul id="selected-foods-list">
+                            <!-- Selected foods and their calories will be listed here -->
+                        </ul>
+                        <div id="aggregate-calories"></div>
+                    </div>
+
+                    <div id="calories-per-container" class="helper-text"></div>
+
+                    <div
+                        id="selection-limit"
+                        class="selection-limit"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        Select up to 5 foods (0/5 selected).
+                    </div>
+                </div>
+
+                <div class="glass-panel" id="frequency-panel">
+                    <h2>2. How often do you consume it?</h2>
+
+                    <label for="servings-input">Servings per period</label>
+                    <input id="servings-input" type="number" value="1" />
+
+                    <label>Frequency</label>
+                    <div class="segmented" id="frequency-group">
+                        <button type="button" data-freq="daily" class="active">
+                            Daily
+                        </button>
+                        <button type="button" data-freq="weekly">Weekly</button>
+                        <button type="button" data-freq="monthly">
+                            Monthly
+                        </button>
+                    </div>
+                    <div id="frequency-helper" class="helper-text"></div>
+
+                    <div id="daily-extra" class="helper-text"></div>
+
+                    <button id="calculate-btn" class="primary-button">
+                        Calculate 5-Year Impact
+                    </button>
+                </div>
+
+                <!-- Right: Chart & Summary -->
+                <div class="glass-panel" id="projection-panel">
+                    <div class="unit-toggle-label">
+                        <div>
+                            <h2>3. 5-year weight projection</h2>
+                            <p class="inline-muted" id="cat-helper-text">
+                                Tap Calculate to see your trajectory (and this
+                                cat get chonkier).
+                            </p>
+                        </div>
+                        <div class="cat-wrapper" aria-hidden="true">
+                            <svg
+                                id="cat-svg"
+                                viewBox="0 0 200 200"
+                                width="160"
+                                height="160"
+                                style="--fatness: 0.5"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <style>
+                                    .body {
+                                        transform-box: fill-box;
+                                        transform-origin: center;
+                                        transform: scaleX(var(--fatness));
+                                        transition: transform 0.4s ease;
+                                    }
+                                    .outline {
+                                        fill: #f5deb3;
+                                        stroke: #333;
+                                        stroke-width: 2;
+                                        stroke-linecap: round;
+                                        stroke-linejoin: round;
+                                    }
+                                    .face-lines {
+                                        stroke: #333;
+                                        stroke-width: 2;
+                                        stroke-linecap: round;
+                                    }
+                                </style>
+                                <g transform="translate(100, 120)">
+                                    <path
+                                        class="outline"
+                                        d="M 35 0
+                                 C 55 -5, 65 -20, 60 -35
+                                 C 55 -45, 45 -40, 45 -30
+                                 C 47 -20, 42 -10, 35 -5 Z"
+                                    />
+                                    <g class="body">
+                                        <ellipse
+                                            class="outline"
+                                            cx="0"
+                                            cy="0"
+                                            rx="35"
+                                            ry="28"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M -10 10
+                                   Q 0 18 10 10"
+                                            fill="none"
+                                        />
+                                    </g>
+                                    <g transform="translate(0, -40)">
+                                        <circle
+                                            class="outline"
+                                            cx="0"
+                                            cy="0"
+                                            r="18"
+                                        />
+                                        <path
+                                            class="outline"
+                                            d="M -12 -10 L -18 -23 L -6 -16 Z"
+                                        />
+                                        <path
+                                            class="outline"
+                                            d="M  12 -10 L  18 -23 L  6 -16 Z"
+                                        />
+                                        <circle
+                                            cx="-6"
+                                            cy="-2"
+                                            r="2.2"
+                                            fill="#333"
+                                        />
+                                        <circle
+                                            cx="6"
+                                            cy="-2"
+                                            r="2.2"
+                                            fill="#333"
+                                        />
+                                        <polygon
+                                            points="-2,2 2,2 0,5"
+                                            fill="#e08b5b"
+                                            stroke="#333"
+                                            stroke-width="0.8"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M 0 5
+                                   C -3 8, -6 9, -8 8"
+                                            fill="none"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M 0 5
+                                   C 3 8, 6 9, 8 8"
+                                            fill="none"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M -4 0  -14 -2"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M -4 3  -14 4"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M 4 0   14 -2"
+                                        />
+                                        <path
+                                            class="face-lines"
+                                            d="M 4 3   14 4"
+                                        />
+                                    </g>
+                                    <ellipse
+                                        class="outline"
+                                        cx="-10"
+                                        cy="24"
+                                        rx="7"
+                                        ry="4"
+                                    />
+                                    <ellipse
+                                        class="outline"
+                                        cx="10"
+                                        cy="24"
+                                        rx="7"
+                                        ry="4"
+                                    />
+                                </g>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="inline-muted">Units:</span>
+                            <div
+                                class="segmented"
+                                id="unit-group"
+                                style="margin-bottom: 0; margin-top: 4px"
+                            >
+                                <button
+                                    type="button"
+                                    data-unit="lb"
+                                    class="active"
+                                >
+                                    lb
+                                </button>
+                                <button type="button" data-unit="kg">kg</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chart-empty" class="helper-text">
+                        Enter calories and frequency, then tap
+                        <strong>Calculate 5-Year Impact</strong>.
+                    </div>
+
+                    <div id="summary-section" style="display: none">
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="label">After 1 year</div>
+                                <div class="value" id="summary-1y"></div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="label">After 5 years</div>
+                                <div class="value" id="summary-5y"></div>
+                            </div>
+                        </div>
+
+                        <div class="chart-shell">
+                            <canvas id="projection-chart" height="260"></canvas>
+                        </div>
+
+                        <p class="fine-print">
+                            This is a rough estimate using
+                            <strong>3,500 calories ≈ 1 lb (0.45 kg)</strong> of
+                            body fat. Real-world weight change depends on many
+                            factors (metabolism, activity, baseline weight,
+                            etc.).
+                        </p>
+                    </div>
+                </div>
+
+                <section class="glass-panel essay-panel">
+                    <h3>Living as Your Best Self</h3>
+                    <p>
+                        Your “best self” isn’t built on sugar spikes or quick
+                        comforts. Ask yourself a simple question:
+                        <i
+                            >Does my best self calm stress with a mocha, or does
+                            my best self build emotional strength—because sugar
+                            doesn’t manage our emotions, it just covers them up
+                            while creating a crash that makes everything
+                            harder?</i
+                        >
+                    </p>
+                    <p>
+                        The version of you that feels sharp, confident, and in
+                        control doesn’t need a caramel latte to feel good. That
+                        version of you chooses habits that support long-term
+                        energy, better focus, and a body that performs well. ou
+                        don’t have to keep repeating habits that make you feel
+                        worse.
+                    </p>
+                    <h2>
+                        Liquid calories and snacks are the first things to cut
+                        for weight loss and mood management.
+                    </h2>
+                    <p>
+                        Picture a version of yourself that keeps the coffee
+                        black, skips the flavored drinks, and replaces a pack of
+                        cookies with an apple. These tiny swaps compound. They
+                        remove empty calories, save money, and help your body
+                        stabilize instead of constantly reacting to sugar.
+                    </p>
+                    <h3>The Spike-and-Crash Problem</h3>
+                    <p>
+                        Processed sugar and refined carbs hit your system fast.
+                        The cycle looks like this:
+                    </p>
+                    <ul>
+                        <li>You eat or drink something sweet.</li>
+                        <li>Your blood sugar spikes quickly.</li>
+                        <li>Your body reacts by releasing too much insulin.</li>
+                        <li>Your energy crashes, and you feel hungry again.</li>
+                    </ul>
+                    <p>
+                        Your stomach doesn’t register liquid calories the same
+                        way as solid food. A caramel latte, bottle of juice, or
+                        energy drink can add hundreds of calories without making
+                        you feel full at all.
+                    </p>
+                    <p>
+                        The easiest first step to improving your diet is
+                        eliminating liquid calories. Drink unsweetened tea,
+                        water with lemon, or black coffee. Skip smoothies that
+                        pack in hidden sugar. This single change creates quick,
+                        noticeable progress.
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

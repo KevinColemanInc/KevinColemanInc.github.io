@@ -1,0 +1,105 @@
+small,big,calories,perContainer,category
+Macaroni and cheese,Kraft Macaroni and cheese,320,3.5,food
+Ice Cream,Ben and Jerries chocolate chip cookie dough (tub),1030,1,Desert
+Potato Chips,Lay’s Classic Potato Chips (bag),160,1,snack
+Orange Juice,Tropicana,110,6,Drink
+Vanilla Icecream,Whidbey Island Vanilla ice cream,200,4,Ice cream
+Peach Juice,Simple Peach,100,7,drink
+Fruit punch,Simply Fruit Punch,100,7,drink
+Lemonade,Classic Lemonade,120,6,drink
+Sweat Tea,Kroger Sweat Black Tea,120,11,drink
+Creamy Cold Brew Coffee,Stok Creamy Cold Brew Coffee,140,4,drink
+Coke,Coca-Cola,200,1,drink
+Dorittos Chips,Doritos Chips,150,9,snack
+Pringles,Pringles Cheddar & Sour cream,150,6,snack
+Popcorn,?? 5213,160,7,snack
+Movie Popcorn,"AMC Movies Popcorn (regular, no butter)",550,1,Snack
+Chocolate,Hershey’s kisses,160,10,snack
+Reese’s Peanut Butter Cups,Reese’s Peanut Butter Cups,130,11,snack
+M&Ms,M&Ms,140,18,snack
+Chocolate Bar,Hershey’s Milk Chocolate bar,150,4,snack
+Snickers,Fun size Snickers,80,5,snack
+Oreo Thin,Oreo Thin,160,15,snack
+Cookie,Chipsahoy Chocolate chip cookie,160,16,snack
+Milano,Milano Milk Chocolate,170,5,snack
+Maple Syrup,Log Cabin Original,110,24,desert
+Cracker,Ritz,80,24,snack
+Frappe,Starbucks Cafe Frappe Vanilla,220,1,drink
+Frappuccino,Starbucks Frappuccino,290,1,drink
+Mocha,Starbucks Cafe Frappe Mocha,220,1,drink
+Caramel Frappe,Starbucks Cafe Frappe Caramel,220,1,Drink
+Hazelnut Syrup,Torani Hazelnut syrup,80,25,drink
+Salted Caramel Monster,Salted Caramel Monster,180,1,drink
+Cold brew Coffee with oat milk and sugar,Oatly Cold brew Coffee with oat milk and sugar,140,1,drink
+Coffee with Milk and Sugar,Starbucks Coffee with Milk and Sugar,280,1,drink
+Vanilla Syrup,Torani Vanilla Syrup,80,25,drink
+Coffee Cream cup,Coffee Cream cup,10,24,drink
+Peppermint Syrup,Torani Pepperment syrup,90,25,drink
+French Vanilla,Torani French Vanilla,80,25,drink
+Muffin,Lemon Marionberry Muffin,250,1,snack
+Doughnut,Top Pot Cinnamon & Sugar cake doughnut,400,1,snack
+Cinnamon roll,Schwartz Brothers cinnamon roll,440,1,snack
+Danish,Cherry Danish,510,1,snack
+Chocolate Donut,Top Pot Chocolate iced old fashioned,450,1,snack
+Plain donut,Top Pot plain donut,350,1,snack
+Bavarian Cream,Top Pot Bavarian Cream donut,490,1,snack
+Sprite,Sprite (can),140,1,drink
+Coke,Coke (can),140,1,drink
+Mini Sprite,Mini Sprite (can),90,1,drink
+Root beer,Barg’s Root beer (can),160,1,drink
+Mountain Dew,Mountain Dew (can),170,1,drink
+Dr Pepper,Dr Pepper (can),150,1,drink
+Pepsi,Pepsi (bottle),150,1,drink
+Mountain Dew,Mountain Dew (bottle),240,1,drink
+Monster,Monster Energy,230,1,drink
+Dr Pepper,Dr Pepper (bottle),150,1, drink
+Baja Blast,Mountain Dew Baja Blast (bottle),230,1,drink
+Rockstar,Rockstar Energy drink (can),260,1,drink
+Gatorade Frost,Gatorade Frost cool,140,1,drink
+Vitamin water,Tropical Energy Vitamin water,100,1,drink
+Red Bull,Red Bull (12oz),160,1,drink
+NOS,Nos energy drink (can),210,1,drink
+Kool-aid,Kool-aid (powder),110,18,drink
+Gatorade Cool Blue,Gatorade Cool Blue,190,1,drink
+Gatorade,Gatorade Grape,200,1,drink
+Arizona Green Tea,Arizona Green Tea with ginseng and honey,100,1,drink
+Snapple,Snapple Strawberry and Kiwi,180,1,drink
+Orange Soda,Sunkiss Orange Soda,220,1,drink
+Orange Juice,Minute Made Orange Juice (bottle),140,1,drink
+Grape Juice,Welch’s Grape Juice,180,1,drink
+Fanta,Fanta (can),160,1,drink
+Apple Juice,Minute Made Apple Juice,140,1,drink
+Cranberry X Watermelon ,Ocean Spray Cranberry X Watermelon ,100,1, drink
+Caprisun,Caprisun Strawberry Kiwi (pouch),50,1,drink
+Caprisun Lemonade,Caprisun Lemonade (pouch),45,1,drink
+Lemonade,Country Time Lemonade,70,1,drink
+Egg Nog,Darigold Old Fashioned Eggnog,180,15,drink
+Corona,Corona Premier (can),90,1,drink
+Corona Light,Corona Light (bottle),99,1,drink
+Malibu,Malibu White rum with coconut liqueur,,,
+Corona Extra,Corona Extra,148,1,drink
+Modelo,Modelo (can),143,1,drink
+Stella Artois,Stella Artois (bottle),140,1,drink
+Michelob Ultra Zero,Michelob Ultra Zero,29,1,drink
+Bud Light,Bud Light (bottle),110,1,drink
+Protien Drink,Bolthouse farms Protein Plus with Almond Butter,390,1,drink
+White Claw,White Claw,100,1,drink
+Vanilla Chai with protein,Bolthouse Farms Vanilla Chai with protein,320,1,drink
+Mocha Cappuccino with protein,Bolthouse Farms Mocha Cappuccino with protein,330,1,drink
+Smoothie,Naked Mango Machine,260,1,drink
+Pomegranate Cheer Juice,POM Pomegranate Cheer Juice,150,2,drink
+Green Machine,Naked Green Machine,240,1,drink
+Ginger Ale,Canada Dry,130,1,drink
+Chikfila sauce,Chikfila sauce,160,16,food
+Ranch dressing,Hidden Valley Ranch Dressing,130,20,food
+Honey Mustard,Sweet Baby Ray’s Honey Mustard,130,14,food
+BBQ Sauce,Kinder’s BBQ Sauce,60,13,food
+Garlic Parmesan Sauce,Sweet Baby Ray's Garlic Parmesan,40,32,food
+Buffalo Ranch,Hidden Valley Buffalo Ranch,110,20,food
+Ketchup,Heinz,20,23,food
+Sweet Teriyaki,Sweet Baby Ray's Sweet Teriyaki,35,32,food
+Mayonnaise,Best Foods Mayonnaise,90,30,food
+Thousand Island dressing,Kraft Thousand Island dressing,130,16,food
+Creamy Ranch,Kroger Creamy Ranch,130,35,food
+Blue Cheese,Ken’s Chunky Blue Cheese,130,16,food
+Blue Cheese,Ken’s Chunky Blue Cheese,130,16,food
