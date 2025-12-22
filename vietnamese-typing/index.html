@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Vietnamese Typing Practice (Telex)</title>
+        <style>
+            :root {
+                --bg: #0b0f17;
+                --card: #121a2a;
+                --muted: #8ea0c0;
+                --text: #e8eefc;
+                --ok: #2dd4bf;
+                --bad: #fb7185;
+                --warn: #fbbf24;
+                --border: rgba(255, 255, 255, 0.08);
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family:
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Helvetica,
+                    Arial;
+                background:
+                    radial-gradient(
+                        1200px 800px at 20% -10%,
+                        rgba(45, 212, 191, 0.12),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        900px 600px at 90% 0%,
+                        rgba(251, 113, 133, 0.1),
+                        transparent 55%
+                    ),
+                    var(--bg);
+                color: var(--text);
+            }
+            .wrap {
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 24px;
+            }
+            .card {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.04),
+                        transparent 42%
+                    ),
+                    var(--card);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 18px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            }
+            h1 {
+                margin: 0 0 12px;
+                font-size: 18px;
+                letter-spacing: 0.2px;
+            }
+            .row {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .muted {
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.4;
+            }
+            .sentence {
+                font-size: 20px;
+                line-height: 1.45;
+                padding: 14px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.2);
+                margin: 10px 0 12px;
+                word-break: break-word;
+            }
+            .controls {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            button {
+                cursor: pointer;
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.06);
+                color: var(--text);
+                padding: 10px 12px;
+                border-radius: 12px;
+                font-weight: 600;
+            }
+            button:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            button.primary {
+                border-color: rgba(45, 212, 191, 0.35);
+                background: rgba(45, 212, 191, 0.12);
+            }
+            button.primary:hover {
+                background: rgba(45, 212, 191, 0.18);
+            }
+            textarea {
+                width: 100%;
+                min-height: 110px;
+                resize: vertical;
+                padding: 12px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.25);
+                color: var(--text);
+                font-size: 16px;
+                line-height: 1.45;
+                outline: none;
+            }
+            textarea:focus {
+                border-color: rgba(45, 212, 191, 0.45);
+            }
+            .status {
+                margin-top: 10px;
+                padding: 10px 12px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.2);
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 10px;
+                border-radius: 999px;
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.04);
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .pill strong {
+                color: var(--text);
+                font-weight: 700;
+            }
+            .result {
+                margin-top: 12px;
+                padding: 12px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .legend {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+            }
+            .legend .key {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .swatch {
+                width: 12px;
+                height: 12px;
+                border-radius: 3px;
+                border: 1px solid var(--border);
+            }
+            .swatch.ok {
+                background: rgba(45, 212, 191, 0.35);
+            }
+            .swatch.bad {
+                background: rgba(251, 113, 133, 0.45);
+            }
+            .swatch.miss {
+                background: rgba(251, 191, 36, 0.4);
+            }
+            .render {
+                font-size: 18px;
+                line-height: 1.6;
+                word-break: break-word;
+            }
+            .ch {
+                padding: 1px 2px;
+                border-radius: 6px;
+                white-space: pre;
+            }
+            .ch.ok {
+                background: rgba(45, 212, 191, 0.14);
+            }
+            .ch.bad {
+                background: rgba(251, 113, 133, 0.22);
+                outline: 1px solid rgba(251, 113, 133, 0.45);
+            }
+            .ch.missing {
+                background: rgba(251, 191, 36, 0.18);
+                outline: 1px dashed rgba(251, 191, 36, 0.55);
+            }
+            .ch.extra {
+                background: rgba(251, 113, 133, 0.18);
+                outline: 1px dashed rgba(251, 113, 133, 0.55);
+            }
+            .hint {
+                margin-top: 18px;
+                padding: 12px;
+                border-radius: 14px;
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.03);
+            }
+            .hinthead {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            label {
+                cursor: pointer;
+                user-select: none;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+                overflow: hidden;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+            }
+            th,
+            td {
+                padding: 10px 10px;
+                border-bottom: 1px solid var(--border);
+                vertical-align: top;
+                text-align: left;
+                font-size: 13px;
+            }
+            th {
+                color: var(--text);
+                background: rgba(0, 0, 0, 0.2);
+            }
+            td {
+                color: var(--muted);
+            }
+            .kbd {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    "Liberation Mono", monospace;
+                font-size: 12px;
+                padding: 2px 6px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.25);
+                color: var(--text);
+                white-space: nowrap;
+            }
+            .small {
+                font-size: 12px;
+            }
+            .footerNote {
+                margin-top: 10px;
+                color: var(--muted);
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="card">
+                <h1>Vietnamese Typing Practice</h1>
+                <div class="row muted">
+                    <div>
+                        Type the sentence below. When you’re done, press
+                        <span class="kbd">Enter</span> (or click
+                        <span class="kbd">Check</span>). Exact character
+                        matching (including accents).
+                    </div>
+                </div>
+
+                <div class="sentence" id="sentence"></div>
+
+                <div class="controls">
+                    <button class="primary" id="checkBtn" type="button">
+                        Check
+                    </button>
+                    <button id="nextBtn" type="button">Next sentence</button>
+                    <button id="resetBtn" type="button">Reset input</button>
+                </div>
+
+                <div style="margin-top: 12px">
+                    <textarea
+                        id="input"
+                        spellcheck="false"
+                        placeholder="Type here..."
+                    ></textarea>
+                </div>
+
+                <div class="status" id="status">
+                    <div class="pill">
+                        Progress: <strong id="progress">0 / 0</strong>
+                    </div>
+                    <div class="pill">
+                        Accuracy: <strong id="accuracy">—</strong>
+                    </div>
+                    <div class="pill">
+                        Mismatches: <strong id="mismatches">—</strong>
+                    </div>
+                </div>
+
+                <div class="result" id="result" style="display: none">
+                    <div class="legend">
+                        <div class="key">
+                            <span class="swatch ok"></span> Correct
+                        </div>
+                        <div class="key">
+                            <span class="swatch bad"></span> Incorrect (wrong
+                            char)
+                        </div>
+                        <div class="key">
+                            <span class="swatch miss"></span> Missing (you
+                            skipped)
+                        </div>
+                    </div>
+                    <div class="muted small" style="margin-bottom: 8px">
+                        Highlighted output shows what you typed, aligned to the
+                        target. For wrong positions, hover/click isn’t
+                        required—your expected character is shown below.
+                    </div>
+                    <div class="render" id="render"></div>
+                    <div class="footerNote" id="correctionNote"></div>
+                </div>
+
+                <div class="hint">
+                    <div class="hinthead">
+                        <div>
+                            <div style="font-weight: 700">Telex hint table</div>
+                            <div class="muted small">
+                                Toggle is enabled by default.
+                            </div>
+                        </div>
+                        <label class="muted">
+                            <input id="toggleHints" type="checkbox" checked />
+                            Show hint table
+                        </label>
+                    </div>
+
+                    <div id="hintTableWrap">
+                        <!-- Replace ONLY the <table>...</table> inside #hintTableWrap with this clearer grid table. -->
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 40%">What you want</th>
+                                    <th style="width: 60%">Type (Telex)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tone marks (dấu thanh)</td>
+                                    <td>
+                                        <table
+                                            style="
+                                                width: 100%;
+                                                border-collapse: collapse;
+                                                border: 1px solid var(--border);
+                                                border-radius: 12px;
+                                                overflow: hidden;
+                                            "
+                                        >
+                                            <thead>
+                                                <tr>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Mark
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Name
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Type
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Example
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>á</td>
+                                                    <td class="muted">sắc</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >s</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >ma</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >mas</span
+                                                        >
+                                                        = “má”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>à</td>
+                                                    <td class="muted">huyền</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >f</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >ma</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >maf</span
+                                                        >
+                                                        = “mà”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ả</td>
+                                                    <td class="muted">hỏi</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >r</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >ma</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >mar</span
+                                                        >
+                                                        = “mả”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ã</td>
+                                                    <td class="muted">ngã</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >x</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >ma</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >max</span
+                                                        >
+                                                        = “mã”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ạ</td>
+                                                    <td class="muted">nặng</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >j</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >ma</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >maj</span
+                                                        >
+                                                        = “mạ”
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="footerNote">
+                                            Tip: type the base word first, then
+                                            add the tone letter at the end.
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>â / ê / ô</td>
+                                    <td>
+                                        <table
+                                            style="
+                                                width: 100%;
+                                                border-collapse: collapse;
+                                                border: 1px solid var(--border);
+                                                border-radius: 12px;
+                                                overflow: hidden;
+                                            "
+                                        >
+                                            <thead>
+                                                <tr>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        What you want
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Type
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Example
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>â</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >aa</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >can</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >caan</span
+                                                        >
+                                                        = “cân”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ê</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >ee</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >me</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >mee</span
+                                                        >
+                                                        = “mê”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ô</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >oo</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >to</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >too</span
+                                                        >
+                                                        = “tô”
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>ă / ơ / ư</td>
+                                    <td>
+                                        <table
+                                            style="
+                                                width: 100%;
+                                                border-collapse: collapse;
+                                                border: 1px solid var(--border);
+                                                border-radius: 12px;
+                                                overflow: hidden;
+                                            "
+                                        >
+                                            <thead>
+                                                <tr>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        What you want
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Type
+                                                    </th>
+                                                    <th
+                                                        style="
+                                                            background: rgba(
+                                                                0,
+                                                                0,
+                                                                0,
+                                                                0.2
+                                                            );
+                                                        "
+                                                    >
+                                                        Example
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>ă</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >aw</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >ban</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >bawn</span
+                                                        >
+                                                        = “băn”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ơ</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >ow</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >to</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >tow</span
+                                                        >
+                                                        = “tơ”
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ư</td>
+                                                    <td>
+                                                        <span class="kbd"
+                                                            >uw</span
+                                                        >
+                                                    </td>
+                                                    <td class="muted">
+                                                        <span class="kbd"
+                                                            >tu</span
+                                                        >
+                                                        →
+                                                        <span class="kbd"
+                                                            >tuw</span
+                                                        >
+                                                        = “tư”
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>đ</td>
+                                    <td>
+                                        <div>
+                                            <span class="kbd">dd</span> = đ
+                                        </div>
+                                        <div class="footerNote">
+                                            Example:
+                                            <span class="kbd">dao</span> →
+                                            <span class="kbd">ddao</span> =
+                                            “đao”
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Combine shape + tone</td>
+                                    <td class="muted">
+                                        Usually: type the shape first, then the
+                                        tone letter at the end.
+                                        <div style="margin-top: 6px">
+                                            Example: “thắng” →
+                                            <span class="kbd">thawngs</span>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Remove accents (IME-dependent)</td>
+                                    <td class="muted">
+                                        Many IMEs support
+                                        <span class="kbd">z</span> to remove
+                                        marks.
+                                        <div style="margin-top: 6px">
+                                            Example:
+                                            <span class="kbd">awz</span> → “a”
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="footerNote">
+                            Tip: If your IME behaves differently, adjust the
+                            table to match your keyboard/IME settings.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Sentences: keep them NFC-normalized to compare correctly.
+            const sentences = [
+                "Hôm nay trời đẹp, mình đi uống cà phê nhé.",
+                "Tôi đang học tiếng Việt bằng phương pháp gõ Telex.",
+                "Bạn có thể nói chậm hơn một chút được không?",
+                "Điều quan trọng là luyện tập mỗi ngày, dù chỉ 10 phút.",
+                "Tôi muốn cải thiện phát âm và tốc độ gõ của mình.",
+                "Buổi sáng tôi thường dậy sớm để tập thể dục.",
+                "Cuối tuần này bạn có kế hoạch gì chưa?",
+                "Thành phố này đông đúc nhưng rất thú vị.",
+                "Tôi thích ăn phở bò hơn phở gà.",
+                "Hôm qua trời mưa lớn nên đường bị ngập.",
+                "Bạn nên nghỉ ngơi một chút trước khi tiếp tục.",
+                "Tôi đang tìm một quán cà phê yên tĩnh để làm việc.",
+                "Việc học ngôn ngữ cần sự kiên nhẫn và đều đặn.",
+                "Anh ấy nói tiếng Việt khá tốt đối với người nước ngoài.",
+                "Chúng ta có thể gặp nhau vào chiều mai không?",
+                "Tôi quên mang theo ô nên bị ướt hết quần áo.",
+                "Cô ấy đang nghe nhạc và đọc sách cùng lúc.",
+                "Món này cay quá, tôi ăn không quen.",
+                "Bạn có thể giúp tôi kiểm tra lại không?",
+                "Giao thông giờ cao điểm thường rất đông.",
+                "Tôi cần thêm thời gian để suy nghĩ về việc này.",
+                "Học gõ đúng dấu sẽ giúp viết nhanh và chính xác hơn.",
+                "Hãy thử lại lần nữa, bạn làm gần đúng rồi.",
+                "Tôi đang dần quen với bàn phím tiếng Việt.",
+                "Mỗi ngày tiến bộ một chút là đủ rồi.",
+            ].map((s) => s.normalize("NFC"));
+
+            let idx = 0;
+
+            const els = {
+                sentence: document.getElementById("sentence"),
+                input: document.getElementById("input"),
+                checkBtn: document.getElementById("checkBtn"),
+                nextBtn: document.getElementById("nextBtn"),
+                resetBtn: document.getElementById("resetBtn"),
+                progress: document.getElementById("progress"),
+                accuracy: document.getElementById("accuracy"),
+                mismatches: document.getElementById("mismatches"),
+                result: document.getElementById("result"),
+                render: document.getElementById("render"),
+                correctionNote: document.getElementById("correctionNote"),
+                toggleHints: document.getElementById("toggleHints"),
+                hintTableWrap: document.getElementById("hintTableWrap"),
+            };
+
+            function setSentence(i) {
+                idx = (i + sentences.length) % sentences.length;
+                els.sentence.textContent = sentences[idx];
+                els.input.value = "";
+                els.result.style.display = "none";
+                updateStatus();
+                els.input.focus();
+            }
+
+            function updateStatus() {
+                const target = sentences[idx];
+                const typed = els.input.value.normalize("NFC");
+                els.progress.textContent = `${Math.min(typed.length, target.length)} / ${target.length}`;
+
+                // Live rough accuracy on aligned prefix only
+                let correct = 0;
+                const L = Math.min(typed.length, target.length);
+                for (let i = 0; i < L; i++)
+                    if (typed[i] === target[i]) correct++;
+
+                const acc = L === 0 ? null : (correct / L) * 100;
+                els.accuracy.textContent =
+                    acc === null ? "—" : `${acc.toFixed(1)}%`;
+
+                // Live mismatch count on aligned prefix
+                let mm = 0;
+                for (let i = 0; i < L; i++) if (typed[i] !== target[i]) mm++;
+                els.mismatches.textContent = L === 0 ? "—" : String(mm);
+            }
+
+            function escapeHtml(s) {
+                return s.replace(
+                    /[&<>"']/g,
+                    (c) =>
+                        ({
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                            "'": "&#39;",
+                        })[c],
+                );
+            }
+
+            function check() {
+                const target = sentences[idx].normalize("NFC");
+                const typedRaw = els.input.value;
+                const typed = typedRaw.normalize("NFC");
+
+                const maxLen = Math.max(target.length, typed.length);
+
+                let mismatchCount = 0;
+                let correctCount = 0;
+
+                // Render "what you typed" aligned to target positions.
+                // For positions beyond typed length: "missing" placeholder.
+                // For positions beyond target length: show as "extra".
+                const parts = [];
+
+                // Optional second line: show expected characters under wrong ones.
+                const expectedLine = [];
+
+                for (let i = 0; i < maxLen; i++) {
+                    const tChar = target[i];
+                    const uChar = typed[i];
+
+                    if (tChar === undefined && uChar !== undefined) {
+                        // Extra input
+                        mismatchCount++;
+                        parts.push(
+                            `<span class="ch extra" title="Extra character">${escapeHtml(uChar)}</span>`,
+                        );
+                        expectedLine.push(`<span class="ch extra"> </span>`);
+                        continue;
+                    }
+
+                    if (tChar !== undefined && uChar === undefined) {
+                        // Missing
+                        mismatchCount++;
+                        parts.push(
+                            `<span class="ch missing" title="Missing character">␣</span>`,
+                        );
+                        expectedLine.push(
+                            `<span class="ch missing">${escapeHtml(tChar)}</span>`,
+                        );
+                        continue;
+                    }
+
+                    if (tChar === uChar) {
+                        correctCount++;
+                        parts.push(
+                            `<span class="ch ok">${escapeHtml(uChar)}</span>`,
+                        );
+                        expectedLine.push(`<span class="ch ok"> </span>`);
+                    } else {
+                        mismatchCount++;
+                        parts.push(
+                            `<span class="ch bad" title="Expected: ${escapeHtml(tChar)}">${escapeHtml(uChar)}</span>`,
+                        );
+                        expectedLine.push(
+                            `<span class="ch bad">${escapeHtml(tChar)}</span>`,
+                        );
+                    }
+                }
+
+                const accuracy =
+                    maxLen === 0 ? 100 : (correctCount / maxLen) * 100;
+
+                els.render.innerHTML =
+                    `<div>${parts.join("")}</div>` +
+                    `<div style="margin-top:10px; opacity:0.95;">${expectedLine.join("")}</div>`;
+
+                const perfect =
+                    mismatchCount === 0 && typed.length === target.length;
+                els.correctionNote.textContent = perfect
+                    ? "Perfect match."
+                    : `Expected sentence: ${target}`;
+
+                els.result.style.display = "block";
+
+                // Update status with final numbers
+                els.progress.textContent = `${Math.min(typed.length, target.length)} / ${target.length}`;
+                els.accuracy.textContent = `${accuracy.toFixed(1)}%`;
+                els.mismatches.textContent = String(mismatchCount);
+            }
+
+            // Events
+            els.checkBtn.addEventListener("click", check);
+            els.nextBtn.addEventListener("click", () => setSentence(idx + 1));
+            els.resetBtn.addEventListener("click", () => {
+                els.input.value = "";
+                els.result.style.display = "none";
+                updateStatus();
+                els.input.focus();
+            });
+
+            els.input.addEventListener("input", () => {
+                els.result.style.display = "none";
+                updateStatus();
+            });
+
+            // Press Enter to check (Shift+Enter keeps newline)
+            els.input.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    check();
+                }
+            });
+
+            els.toggleHints.addEventListener("change", () => {
+                els.hintTableWrap.style.display = els.toggleHints.checked
+                    ? "block"
+                    : "none";
+            });
+
+            // Init
+            setSentence(0);
+            els.hintTableWrap.style.display = els.toggleHints.checked
+                ? "block"
+                : "none";
+        </script>
+    </body>
+</html>

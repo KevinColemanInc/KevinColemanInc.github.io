@@ -35,10 +35,13 @@ permalink: /projects/
   [github.com](https://github.com/KevinColemanInc/nearest-palette)
 
 - **Numbers** – listening to numbers for language learning  
-  /numbers/
+  [kcoleman.me/numbers](/numbers/)
 
 - **Get Fat Slowly** – analyze long-term impact of caloric habits  
-  /get-fat-slowly/
+  [kcoleman.me/get-fat-slowly](/get-fat-slowly/)
+
+- **Practice Vietnamese typing with Telex** – practice typing Vietnamese sentences using telex  
+  [kcoleman.me/vietnamese-typing](/vietnamese-typing/)
 
 
 ## SaaS
