@@ -9,7 +9,6 @@ permalink: /projects/
 
 # Some Things I've Built
 
-## Tools
 - **After Death Instructions – Template**  
   Google Doc template for organizing personal instructions for loved ones.  
   [docs.google.com](https://docs.google.com/document/d/1OrhYPW4b8iNkg-TMNJNc8DtmHnjAISzW5mThY9s2zMg/edit)
@@ -31,17 +30,20 @@ permalink: /projects/
 - **NSFW-flask** – ML service for NSFW image detection  
   [github.com](https://github.com/KevinColemanInc/NSFW-FLASK)
 
-- **nearest-palette** – vector search for similar color palettes  
-  [github.com](https://github.com/KevinColemanInc/nearest-palette)
+## Tools
+Vibe-coded tools used to enhance my life through critical analysis.
+
+- **Nearest-palette** – vector search for similar color palettes  
+  [github.com/KevinColemanInc/nearest-palette](https://github.com/KevinColemanInc/nearest-palette)
 
 - **Numbers** – listening to numbers for language learning  
-  [kcoleman.me/numbers](/numbers/)
+  [./numbers](/numbers/)
 
 - **Get Fat Slowly** – analyze long-term impact of caloric habits  
-  [kcoleman.me/get-fat-slowly](/get-fat-slowly/)
+  [./get-fat-slowly](/get-fat-slowly/)
 
 - **Practice Vietnamese typing with Telex** – practice typing Vietnamese sentences using telex  
-  [kcoleman.me/vietnamese-typing](/vietnamese-typing/)
+  [./vietnamese-typing](/vietnamese-typing/)
 
 
 ## SaaS
