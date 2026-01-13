@@ -30,6 +30,9 @@ permalink: /projects/
 - **NSFW-flask** – ML service for NSFW image detection  
   [github.com](https://github.com/KevinColemanInc/NSFW-FLASK)
 
+- **Image Rename** – Rename screenshots with AI (local inference)
+  [github.com](https://github.com/KevinColemanInc/img_rename)
+
 ## Tools
 Vibe-coded tools used to enhance my life through critical analysis.
 
