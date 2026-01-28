@@ -14,7 +14,7 @@ I still don’t know why it was there. My parents didn’t drink soda. Maybe it 
 
 Whenever I was stressed about school or upset at them, I’d sneak into the garage and take a sip out of one of the 20oz bottles.
 
-That sip wasn’t about the soda. It was about rebellion. Self-soothing. Control. It was a quiet “fuck you” to rules I didn’t agree with, and a small moment of calm when I needed it.
+That sip wasn’t about the soda. It was about rebellion. Self-soothing. Control. It was a quiet “f you” to rules I didn’t agree with, and a small moment of calm in the garage when I needed it.
 
 Today, I’m an adult. I have adult money. I can buy soda whenever I want.
 
@@ -22,13 +22,17 @@ And because of that, soda means nothing to me now.
 
 ---
 
-Scarcity creates anticipation
+<center>
 
-Anticipation amplifies experience
+<p>Scarcity creates anticipation</p>
 
-Unlimited access removes anticipation
+<p>Anticipation amplifies experience</p>
 
-Without anticipation, pleasure decays into habit
+<p>Unlimited access removes anticipation</p>
+
+<p>Without anticipation, pleasure decays into habit</p>
+
+</center>
 
 ---
 
