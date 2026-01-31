@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Two-Phrase TTS</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap");
+
+            :root {
+                --bg: #f6f24a;
+                --ink: #101014;
+                --paper: #ffffff;
+                --accent: #ff5d7a;
+                --accent2: #2f7bff;
+                --accent3: #21d07a;
+                --muted: #2a2a2a;
+                --border: #101014;
+                --shadow: 6px 6px 0 #101014;
+                --shadow-soft: 10px 10px 0 #101014;
+                --radius: 0px;
+                --radius2: 0px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                color: var(--ink);
+                font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+                background: var(--bg);
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 14px;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 980px;
+            }
+
+            .topbar {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-direction: column;
+                margin-bottom: 14px;
+                gap: 12px;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 999px;
+                background: var(--accent2);
+                box-shadow: 0 0 0 4px var(--border);
+            }
+            .brand h1 {
+                font-size: 16px;
+                margin: 0;
+                letter-spacing: 0.4px;
+            }
+            .hint {
+                font-size: 12px;
+                color: var(--muted);
+                margin: 0;
+            }
+
+            .card {
+                background: var(--paper);
+                border: 3px solid var(--border);
+                border-radius: var(--radius2);
+                box-shadow: var(--shadow-soft);
+                overflow: hidden;
+            }
+
+            .cardHeader {
+                padding: 16px 18px;
+                border-bottom: 3px solid var(--border);
+                background: var(--accent3);
+            }
+            .cardHeader h2 {
+                margin: 0;
+                font-size: 16px;
+            }
+            .cardHeader p {
+                margin: 6px 0 0;
+                font-size: 13px;
+                color: var(--ink);
+            }
+
+            .content {
+                padding: 18px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .field {
+                background: #fff5c2;
+                border: 3px solid var(--border);
+                border-radius: var(--radius);
+                padding: 14px;
+                box-shadow: var(--shadow);
+            }
+            .field label {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                font-size: 13px;
+                color: var(--ink);
+                margin-bottom: 10px;
+            }
+
+            .row {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .select,
+            .input,
+            .textarea {
+                width: 100%;
+                background: var(--paper);
+                color: var(--ink);
+                border: 3px solid var(--border);
+                border-radius: 0;
+                padding: 10px 12px;
+                outline: none;
+                font-size: 14px;
+                box-shadow: var(--shadow);
+            }
+
+            .textarea {
+                min-height: 96px;
+                resize: vertical;
+                line-height: 1.35;
+            }
+
+            .mutedSmall {
+                font-size: 12px;
+                color: var(--muted);
+                margin-top: 8px;
+            }
+
+            .footer {
+                padding: 16px 18px;
+                border-top: 3px solid var(--border);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .btnRow {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                border: 3px solid var(--border);
+                background: var(--paper);
+                color: var(--ink);
+                border-radius: 0;
+                padding: 10px 14px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: transform 0.08s ease;
+                user-select: none;
+                box-shadow: var(--shadow);
+            }
+            .btn:hover {
+                transform: translate(-2px, -2px);
+            }
+            .btn:active {
+                transform: scale(0.98);
+            }
+            .btn.primary {
+                background: var(--accent2);
+                color: #ffffff;
+            }
+            .btn.primary:hover {
+                transform: translate(-2px, -2px);
+            }
+            .btn.danger {
+                background: var(--accent);
+                color: #ffffff;
+            }
+
+            /* Screen 2 (Translate-ish) */
+            .translateWrap {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            @media (min-width: 860px) {
+                body {
+                    align-items: center;
+                    padding: 18px;
+                }
+                .topbar {
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-direction: row;
+                }
+                .grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .translateWrap {
+                    grid-template-columns: 1.15fr 0.85fr;
+                }
+            }
+
+            .panel {
+                background: var(--paper);
+                border: 3px solid var(--border);
+                border-radius: var(--radius2);
+                padding: 18px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: var(--shadow-soft);
+            }
+            .panel::before {
+                content: "";
+                position: absolute;
+                inset: -40px -40px auto auto;
+                width: 120px;
+                height: 120px;
+                background: var(--accent);
+                transform: rotate(12deg);
+                pointer-events: none;
+            }
+
+            .bigMic {
+                width: 92px;
+                height: 92px;
+                border-radius: 0;
+                display: grid;
+                place-items: center;
+                border: 3px solid var(--border);
+                background: var(--accent2);
+                margin-bottom: 12px;
+                position: relative;
+                overflow: hidden;
+            }
+            .bigMic::after {
+                content: "";
+                position: absolute;
+                inset: -40%;
+                background: var(--accent3);
+                transform: rotate(20deg);
+            }
+            .micIcon {
+                width: 34px;
+                height: 34px;
+                z-index: 1;
+                opacity: 0.95;
+            }
+
+            .phraseTitle {
+                margin: 0;
+                font-size: 13px;
+                color: var(--muted);
+                letter-spacing: 0.2px;
+            }
+            .phraseText {
+                margin: 6px 0 0;
+                font-size: 18px;
+                line-height: 1.35;
+                white-space: pre-wrap;
+            }
+
+            .status {
+                margin-top: 12px;
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .sideInfo h3 {
+                margin: 0 0 8px;
+                font-size: 14px;
+            }
+            .kv {
+                display: grid;
+                grid-template-columns: 120px 1fr;
+                gap: 8px 10px;
+                margin-top: 12px;
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 10px;
+                border-radius: 0;
+                background: var(--accent3);
+                border: 3px solid var(--border);
+                color: var(--ink);
+                font-size: 13px;
+                margin-top: 10px;
+                width: fit-content;
+            }
+
+            .hidden {
+                display: none !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+            <div class="topbar">
+                <div class="brand">
+                    <div class="dot"></div>
+                    <div>
+                        <h1>Two-Phrase TTS</h1>
+                        <p class="hint">
+                            Pick messages + a browser voice (defaults to
+                            Vietnamese), then tap buttons to speak.
+                        </p>
+                    </div>
+                </div>
+                <div class="btnRow">
+                    <button
+                        id="stopBtn"
+                        class="btn danger"
+                        type="button"
+                        title="Stop speaking"
+                    >
+                        Stop
+                    </button>
+                </div>
+            </div>
+
+            <!-- SCREEN 1: SETUP -->
+            <section id="setupScreen" class="card">
+                <div class="cardHeader">
+                    <h2>Setup</h2>
+                    <p>
+                        Choose or type two phrases. Then choose a TTS
+                        language/voice available in your browser.
+                    </p>
+                </div>
+
+                <div class="content">
+                    <div class="grid">
+                        <div class="field">
+                            <label>
+                                <span>Message A</span>
+                                <span class="hint" id="aCount">0 chars</span>
+                            </label>
+                            <div class="row">
+                                <select id="presetA" class="select">
+                                    <option value="">
+                                        Pick a preset (optional)…
+                                    </option>
+                                </select>
+                                <textarea
+                                    id="messageA"
+                                    class="textarea"
+                                    placeholder="Type Message A…"
+                                ></textarea>
+                            </div>
+                            <div class="mutedSmall">
+                                Presets can be used as a starting point—edit as
+                                needed.
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>
+                                <span>Message B</span>
+                                <span class="hint" id="bCount">0 chars</span>
+                            </label>
+                            <div class="row">
+                                <select id="presetB" class="select">
+                                    <option value="">
+                                        Pick a preset (optional)…
+                                    </option>
+                                </select>
+                                <textarea
+                                    id="messageB"
+                                    class="textarea"
+                                    placeholder="Type Message B…"
+                                ></textarea>
+                            </div>
+                            <div class="mutedSmall">
+                                You can set these up once, then use the buttons
+                                quickly.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="height: 14px"></div>
+
+                    <div class="grid">
+                        <div class="field">
+                            <label>
+                                <span
+                                    >Voice / Language (from your browser)</span
+                                >
+                                <span class="hint" id="voiceHint"
+                                    >Loading voices…</span
+                                >
+                            </label>
+                            <div class="row">
+                                <select
+                                    id="voiceSelect"
+                                    class="select"
+                                ></select>
+                                <div class="mutedSmall">
+                                    Defaults to <b>Vietnamese (vi-VN)</b> if
+                                    your system has a Vietnamese voice
+                                    installed.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>
+                                <span>English Voice (for labels)</span>
+                                <span class="hint" id="englishVoiceHint"
+                                    >Loading voices…</span
+                                >
+                            </label>
+                            <div class="row">
+                                <select
+                                    id="englishVoiceSelect"
+                                    class="select"
+                                ></select>
+                                <div class="mutedSmall">
+                                    Used when reading the English label after
+                                    the Vietnamese phrase.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div class="hint" id="supportHint"></div>
+                    <div class="btnRow">
+                        <button id="setupSpeakA" class="btn" type="button">
+                            Test A
+                        </button>
+                        <button id="setupSpeakB" class="btn" type="button">
+                            Test B
+                        </button>
+                        <button id="goBtn" class="btn primary" type="button">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 2: TRANSLATE-LIKE VIEW -->
+            <section id="playScreen" class="card hidden">
+                <div class="cardHeader">
+                    <h2>Playback</h2>
+                    <p>
+                        Looks like a translate recording screen — tap a button
+                        to speak a phrase.
+                    </p>
+                </div>
+
+                <div class="content">
+                    <div class="translateWrap">
+                        <div class="panel">
+                            <div class="bigMic" aria-hidden="true">
+                                <svg
+                                    class="micIcon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Z"
+                                        stroke="white"
+                                        stroke-opacity="0.92"
+                                        stroke-width="1.8"
+                                    />
+                                    <path
+                                        d="M19 11a7 7 0 0 1-14 0"
+                                        stroke="white"
+                                        stroke-opacity="0.72"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                    />
+                                    <path
+                                        d="M12 18v3"
+                                        stroke="white"
+                                        stroke-opacity="0.72"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                    />
+                                    <path
+                                        d="M9 21h6"
+                                        stroke="white"
+                                        stroke-opacity="0.72"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                    />
+                                </svg>
+                            </div>
+
+                            <p class="phraseTitle">Selected phrases</p>
+                            <p id="playA" class="phraseText"></p>
+                            <div style="height: 10px"></div>
+                            <p
+                                id="playB"
+                                class="phraseText"
+                                style="opacity: 0.92"
+                            ></p>
+
+                            <div class="status" id="status">Ready.</div>
+
+                            <div style="height: 14px"></div>
+
+                            <div class="btnRow">
+                                <button
+                                    id="speakA"
+                                    class="btn primary"
+                                    type="button"
+                                >
+                                    Speak A
+                                </button>
+                                <button
+                                    id="speakB"
+                                    class="btn primary"
+                                    type="button"
+                                >
+                                    Speak B
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="panel sideInfo">
+                            <div class="pill" id="compatPill">
+                                Speech synthesis: checking…
+                            </div>
+
+                            <div style="height: 14px"></div>
+
+                            <button id="backBtn" class="btn" type="button">
+                                ← Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SCREEN 3: B FULL READ -->
+            <section id="bReadScreen" class="card hidden">
+                <div class="content">
+                    <p class="phraseTitle">Vietnamese</p>
+                    <p id="bReadText" class="phraseText"></p>
+
+                    <div style="height: 18px"></div>
+
+                    <div class="btnRow">
+                        <button id="replayBRead" class="btn primary" type="button">
+                            Replay
+                        </button>
+                        <button id="backFromBRead" class="btn" type="button">
+                            ← Back
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            // ---------------------------
+            // Presets (edit as you like)
+            // ---------------------------
+            const PRESETS_A = [
+                {
+                    label: "Hello, I am a foreigner and i don't know vietnamese. Can you help me find bananas?",
+                    value: "Chào bạn, tôi là người nước ngoài và không biết tiếng Việt. Bạn có thể giúp tôi tìm chuối được không?'",
+                },
+                {
+                    label: "Hello, I am a foreigner and i don't know vietnamese. Do you know where I can find soup?",
+                    value: "Chào bạn, tôi là người nước ngoài và không biết tiếng Việt. Bạn có biết tôi có thể tìm mua súp ở đâu không?'",
+                },
+            ];
+
+            const PRESETS_B = [
+                {
+                    label: "Your head is full of bananas",
+                    value: "Dịch cụm từ: 'Đầu toàn chuối.'",
+                },
+                {
+                    label: "Want to have sex?",
+                    value: "Dịch cụm từ: 'đi chịch không'",
+                },
+                {
+                    label: "Yes, I can help you find a sexy prostitutes.",
+                    value: "Dịch: 'Vâng, tôi có thể giúp bạn tìm một quán phò ngon.'",
+                },
+                {
+                    label: "I want to see you topless",
+                    value: "Dịch cụm từ: 'Em muốn nhìn thấy bạn cởi trần'",
+                },
+            ];
+
+            // ---------------------------
+            // State
+            // ---------------------------
+            const state = {
+                messageA: PRESETS_A[0] ? PRESETS_A[0].value : "",
+                messageB: PRESETS_B[0] ? PRESETS_B[0].value : "",
+                voiceURI: "",
+                englishVoiceURI: "",
+                lang: "vi-VN",
+            };
+
+            // ---------------------------
+            // Elements
+            // ---------------------------
+            const setupScreen = document.getElementById("setupScreen");
+            const playScreen = document.getElementById("playScreen");
+            const bReadScreen = document.getElementById("bReadScreen");
+
+            const presetA = document.getElementById("presetA");
+            const presetB = document.getElementById("presetB");
+            const messageA = document.getElementById("messageA");
+            const messageB = document.getElementById("messageB");
+            const aCount = document.getElementById("aCount");
+            const bCount = document.getElementById("bCount");
+
+            const voiceSelect = document.getElementById("voiceSelect");
+            const voiceHint = document.getElementById("voiceHint");
+            const englishVoiceSelect = document.getElementById(
+                "englishVoiceSelect",
+            );
+            const englishVoiceHint = document.getElementById("englishVoiceHint");
+
+            const supportHint = document.getElementById("supportHint");
+            const stopBtn = document.getElementById("stopBtn");
+
+            const setupSpeakA = document.getElementById("setupSpeakA");
+            const setupSpeakB = document.getElementById("setupSpeakB");
+            const goBtn = document.getElementById("goBtn");
+
+            const playA = document.getElementById("playA");
+            const playB = document.getElementById("playB");
+            const statusEl = document.getElementById("status");
+            const bReadText = document.getElementById("bReadText");
+
+            const speakA = document.getElementById("speakA");
+            const speakB = document.getElementById("speakB");
+            const backBtn = document.getElementById("backBtn");
+            const backFromBRead = document.getElementById("backFromBRead");
+            const replayBRead = document.getElementById("replayBRead");
+
+            const compatPill = document.getElementById("compatPill");
+
+            // ---------------------------
+            // Speech helpers
+            // ---------------------------
+            function isSpeechSupported() {
+                return (
+                    "speechSynthesis" in window &&
+                    "SpeechSynthesisUtterance" in window
+                );
+            }
+
+            function stopSpeaking() {
+                if (!isSpeechSupported()) return;
+                window.speechSynthesis.cancel();
+                statusEl.textContent = "Stopped.";
+            }
+
+            function getAllVoices() {
+                if (!isSpeechSupported()) return [];
+                return window.speechSynthesis.getVoices() || [];
+            }
+
+            function pickDefaultVoice(voices) {
+                // Prefer vi-VN, then any vi-* voice, else first.
+                const exactViVN = voices.find(
+                    (v) => (v.lang || "").toLowerCase() === "vi-vn",
+                );
+                if (exactViVN) return exactViVN;
+
+                const anyVi = voices.find((v) =>
+                    (v.lang || "").toLowerCase().startsWith("vi"),
+                );
+                if (anyVi) return anyVi;
+
+                return voices[0] || null;
+            }
+
+            function pickEnglishVoice(voices) {
+                const exactEnUS = voices.find(
+                    (v) => (v.lang || "").toLowerCase() === "en-us",
+                );
+                if (exactEnUS) return exactEnUS;
+
+                const anyEn = voices.find((v) =>
+                    (v.lang || "").toLowerCase().startsWith("en"),
+                );
+                if (anyEn) return anyEn;
+
+                return null;
+            }
+
+            function selectedVoiceFromState(voices) {
+                if (!voices.length) return null;
+                if (state.voiceURI) {
+                    const match = voices.find(
+                        (v) => v.voiceURI === state.voiceURI,
+                    );
+                    if (match) return match;
+                }
+                return pickDefaultVoice(voices);
+            }
+
+            function selectedEnglishVoiceFromState(voices) {
+                if (!voices.length) return null;
+                if (state.englishVoiceURI) {
+                    const match = voices.find(
+                        (v) => v.voiceURI === state.englishVoiceURI,
+                    );
+                    if (match) return match;
+                }
+                const googleEnUS = voices.find((v) => {
+                    const lang = (v.lang || "").toLowerCase();
+                    const name = (v.name || "").toLowerCase();
+                    return lang === "en-us" && name.includes("google");
+                });
+                if (googleEnUS) return googleEnUS;
+                return pickEnglishVoice(voices) || voices[0] || null;
+            }
+
+            function speak(text) {
+                if (!isSpeechSupported()) {
+                    alert("Speech Synthesis is not supported in this browser.");
+                    return;
+                }
+                const trimmed = (text || "").trim();
+                if (!trimmed) {
+                    statusEl.textContent = "Nothing to speak.";
+                    return;
+                }
+
+                const voices = getAllVoices();
+                const voice = selectedVoiceFromState(voices);
+
+                // Cancel any ongoing speech before speaking again (snappier UX)
+                window.speechSynthesis.cancel();
+
+                const u = new SpeechSynthesisUtterance(trimmed);
+                if (voice) {
+                    u.voice = voice;
+                    u.lang = voice.lang || state.lang || "vi-VN";
+                } else {
+                    u.lang = state.lang || "vi-VN";
+                }
+                u.rate = 1.0;
+
+                u.onstart = () => {
+                    statusEl.textContent = "Speaking…";
+                };
+                u.onend = () => {
+                    statusEl.textContent = "Ready.";
+                };
+                u.onerror = (e) => {
+                    statusEl.textContent = "TTS error.";
+                    console.warn("Speech error:", e);
+                };
+
+                window.speechSynthesis.speak(u);
+            }
+
+            function findPresetLabel(value, presets) {
+                const match = presets.find((p) => p.value === value);
+                return match ? match.label : "";
+            }
+
+            function extractEnglishFromLabel(label) {
+                if (!label) return "";
+                const parts = label.split(" — ");
+                if (parts.length > 1) {
+                    return parts.slice(1).join(" — ").trim();
+                }
+                return label.trim();
+            }
+
+            function speakBSequence() {
+                if (!isSpeechSupported()) {
+                    alert("Speech Synthesis is not supported in this browser.");
+                    return;
+                }
+
+                const trimmed = (state.messageB || "").trim();
+                if (!trimmed) {
+                    statusEl.textContent = "Nothing to speak.";
+                    return;
+                }
+
+                const voices = getAllVoices();
+                const viVoice = selectedVoiceFromState(voices);
+                const enVoice = selectedEnglishVoiceFromState(voices);
+
+                window.speechSynthesis.cancel();
+
+                const viUtterance = new SpeechSynthesisUtterance(trimmed);
+                if (viVoice) {
+                    viUtterance.voice = viVoice;
+                    viUtterance.lang = viVoice.lang || state.lang || "vi-VN";
+                } else {
+                    viUtterance.lang = state.lang || "vi-VN";
+                }
+                viUtterance.rate = 1.0;
+
+                const label = findPresetLabel(state.messageB, PRESETS_B);
+                const englishText = extractEnglishFromLabel(label);
+                let enUtterance = null;
+                if (englishText) {
+                    enUtterance = new SpeechSynthesisUtterance(englishText);
+                    if (enVoice) {
+                        enUtterance.voice = enVoice;
+                        enUtterance.lang = enVoice.lang || "en-US";
+                    } else {
+                        enUtterance.lang = "en-US";
+                    }
+                    enUtterance.rate = 1.0;
+                }
+
+                viUtterance.onstart = () => {
+                    statusEl.textContent = "Speaking…";
+                };
+                viUtterance.onend = () => {
+                    statusEl.textContent = "Ready.";
+                };
+                viUtterance.onerror = () => {
+                    statusEl.textContent = "TTS error.";
+                };
+
+                window.speechSynthesis.speak(viUtterance);
+                if (enUtterance) {
+                    window.speechSynthesis.speak(enUtterance);
+                }
+            }
+
+            // ---------------------------
+            // UI wiring
+            // ---------------------------
+            function fillPresets(selectEl, presets) {
+                for (const p of presets) {
+                    const opt = document.createElement("option");
+                    opt.value = p.value;
+                    opt.textContent = p.label;
+                    selectEl.appendChild(opt);
+                }
+            }
+
+            function updateCharCounts() {
+                aCount.textContent = `${(messageA.value || "").length} chars`;
+                bCount.textContent = `${(messageB.value || "").length} chars`;
+            }
+
+            function setSetupFromState() {
+                messageA.value = state.messageA || "";
+                messageB.value = state.messageB || "";
+                updateCharCounts();
+            }
+
+            function setStateFromSetup() {
+                state.messageA = messageA.value || "";
+                state.messageB = messageB.value || "";
+
+                const voices = getAllVoices();
+                const picked = voices.find(
+                    (v) => v.voiceURI === voiceSelect.value,
+                );
+                if (picked) {
+                    state.voiceURI = picked.voiceURI;
+                    state.lang = picked.lang || state.lang;
+                }
+
+                const pickedEnglish = voices.find(
+                    (v) => v.voiceURI === englishVoiceSelect.value,
+                );
+                if (pickedEnglish) {
+                    state.englishVoiceURI = pickedEnglish.voiceURI;
+                }
+            }
+
+            function populateVoiceDropdown() {
+                if (!isSpeechSupported()) {
+                    voiceHint.textContent =
+                        "Speech synthesis not supported in this browser.";
+                    englishVoiceHint.textContent =
+                        "Speech synthesis not supported in this browser.";
+                    supportHint.textContent =
+                        "Your browser does not support Speech Synthesis.";
+                    compatPill.textContent = "Speech synthesis: not supported";
+                    return;
+                }
+
+                const voices = getAllVoices();
+                voiceSelect.innerHTML = "";
+                englishVoiceSelect.innerHTML = "";
+
+                if (!voices.length) {
+                    voiceHint.textContent = "No voices loaded yet (try again).";
+                    englishVoiceHint.textContent =
+                        "No voices loaded yet (try again).";
+                    return;
+                }
+
+                // Group-ish sort: put vi* at top, then rest alphabetically by lang+name
+                const sorted = [...voices].sort((a, b) => {
+                    const av = (a.lang || "").toLowerCase().startsWith("vi")
+                        ? 0
+                        : 1;
+                    const bv = (b.lang || "").toLowerCase().startsWith("vi")
+                        ? 0
+                        : 1;
+                    if (av !== bv) return av - bv;
+                    const ak = `${a.lang || ""} ${a.name || ""}`.toLowerCase();
+                    const bk = `${b.lang || ""} ${b.name || ""}`.toLowerCase();
+                    return ak.localeCompare(bk);
+                });
+
+                for (const v of sorted) {
+                    const opt = document.createElement("option");
+                    opt.value = v.voiceURI;
+                    opt.textContent = `${v.lang || "?"} — ${v.name || "Voice"}${v.default ? " (default)" : ""}`;
+                    voiceSelect.appendChild(opt);
+                }
+
+                const def = selectedVoiceFromState(sorted);
+                if (def) {
+                    voiceSelect.value = def.voiceURI;
+                    state.voiceURI = def.voiceURI;
+                    state.lang = def.lang || state.lang || "vi-VN";
+                    voiceHint.textContent = `Loaded ${voices.length} voice(s). Defaulting to: ${def.lang} — ${def.name}`;
+                } else {
+                    voiceHint.textContent = `Loaded ${voices.length} voice(s).`;
+                }
+
+                for (const v of sorted) {
+                    const opt = document.createElement("option");
+                    opt.value = v.voiceURI;
+                    opt.textContent = `${v.lang || "?"} — ${v.name || "Voice"}${v.default ? " (default)" : ""}`;
+                    englishVoiceSelect.appendChild(opt);
+                }
+
+                const english = selectedEnglishVoiceFromState(sorted);
+                if (english) {
+                    englishVoiceSelect.value = english.voiceURI;
+                    state.englishVoiceURI = english.voiceURI;
+                    englishVoiceHint.textContent = `Loaded ${voices.length} voice(s). Defaulting to: ${english.lang} — ${english.name}`;
+                } else {
+                    englishVoiceHint.textContent = `Loaded ${voices.length} voice(s).`;
+                }
+
+                supportHint.textContent =
+                    "If Vietnamese voices are missing, install a Vietnamese voice in your OS settings.";
+                compatPill.textContent = "Speech synthesis: supported";
+            }
+
+            function goToPlayScreen() {
+                setStateFromSetup();
+
+                const a = (state.messageA || "").trim();
+                const b = (state.messageB || "").trim();
+                if (!a || !b) {
+                    alert("Please fill in both Message A and Message B.");
+                    return;
+                }
+
+                // Render outputs
+                playA.textContent = `A: ${a}`;
+                playB.textContent = `B: ${b}`;
+
+                const voices = getAllVoices();
+                const v = selectedVoiceFromState(voices);
+                statusEl.textContent = "Ready.";
+
+                setupScreen.classList.add("hidden");
+                playScreen.classList.remove("hidden");
+            }
+
+            function goBackToSetup() {
+                stopSpeaking();
+                setupScreen.classList.remove("hidden");
+                playScreen.classList.add("hidden");
+                bReadScreen.classList.add("hidden");
+            }
+
+            function showBReadScreen() {
+                bReadText.textContent = state.messageB || "";
+                playScreen.classList.add("hidden");
+                bReadScreen.classList.remove("hidden");
+            }
+
+            function backToPlayFromBRead() {
+                stopSpeaking();
+                bReadScreen.classList.add("hidden");
+                playScreen.classList.remove("hidden");
+            }
+
+            // ---------------------------
+            // Init
+            // ---------------------------
+            fillPresets(presetA, PRESETS_A);
+            fillPresets(presetB, PRESETS_B);
+
+            presetA.addEventListener("change", () => {
+                if (presetA.value) {
+                    messageA.value = presetA.value;
+                    presetA.value = "";
+                    updateCharCounts();
+                }
+            });
+
+            presetB.addEventListener("change", () => {
+                if (presetB.value) {
+                    messageB.value = presetB.value;
+                    presetB.value = "";
+                    updateCharCounts();
+                }
+            });
+
+            messageA.addEventListener("input", updateCharCounts);
+            messageB.addEventListener("input", updateCharCounts);
+
+            stopBtn.addEventListener("click", stopSpeaking);
+
+            setupSpeakA.addEventListener("click", () => {
+                setStateFromSetup();
+                speak(messageA.value);
+            });
+            setupSpeakB.addEventListener("click", () => {
+                setStateFromSetup();
+                speak(messageB.value);
+            });
+
+            goBtn.addEventListener("click", goToPlayScreen);
+
+            speakA.addEventListener("click", () => speak(state.messageA));
+            speakB.addEventListener("click", () => {
+                setStateFromSetup();
+                showBReadScreen();
+                speakBSequence();
+            });
+            backBtn.addEventListener("click", goBackToSetup);
+            backFromBRead.addEventListener("click", backToPlayFromBRead);
+            replayBRead.addEventListener("click", () => {
+                setStateFromSetup();
+                speakBSequence();
+            });
+
+            // Voices often load async. Use both onvoiceschanged and a small retry.
+            function initVoices() {
+                populateVoiceDropdown();
+            }
+
+            if (isSpeechSupported()) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    populateVoiceDropdown();
+                };
+            }
+
+            // First paint
+            setSetupFromState();
+            initVoices();
+
+            // Some browsers need a delayed attempt
+            setTimeout(initVoices, 250);
+            setTimeout(initVoices, 1000);
+        </script>
+    </body>
+</html>
