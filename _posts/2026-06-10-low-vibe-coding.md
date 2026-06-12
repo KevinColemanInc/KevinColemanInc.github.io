@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "tokenmining: low token plans maximize your output"
+title: "Tokenmining: low token plans maximize your output"
 date: 2026-06-10 01:49:55 -0400
 comments: true
 categories:
