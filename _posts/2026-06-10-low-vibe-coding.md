@@ -6,7 +6,7 @@ comments: true
 categories:
 ---
 
-Not sure if anyone else needs to hear this, but I realized recently that limiting my token use (opting for a low token plan), saves me money and encourages me to stay focused on my time.
+I realized recently that limiting my token use (opting for a low token plan), saves me money and encourages me to stay focused on delivering software, not just writing it.
 
 At the start of a product development, I brain dump all the things I need to do before I can officially launch this feature. It ranges from product features, to marketing tasks, to legal tasks, etc.
 
