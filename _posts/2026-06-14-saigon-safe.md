@@ -7,6 +7,16 @@ categories:
 ---
 I've used Bitwarden for ~6 years, and there were a handful of UX issues that annoyed me enough that I finally did something about them.
 
+---
+quick links
+
+- [Google Chrome](https://chromewebstore.google.com/detail/saigon-safe/iplggehdmbbndlednajekcfmcokbnnlj)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/saigon-safe/)
+- [Source Code](http://github.com/kevincolemaninc/saigon-safe)
+- [Blog](https://www.kcoleman.me/2026/06/14/saigon-safe.html)
+
+---
+
 The result is **Saigon Safe** [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/saigon-safe/): a fork of the Bitwarden browser extension, built mostly with AI-assisted coding.
 
 <p align="center">
