@@ -1,0 +1,1040 @@
+---
+layout: null
+permalink: /linkedin.com/
+title: Kevin Coleman — Engineering Leader
+description: Engineering leader focused on ML Engineering, Trust & Safety, and distributed systems.
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.description }}">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{{ '/images/kevin.jpg' | absolute_url }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <title>{{ page.title }}</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --blue: #0a66c2;
+        --blue-dark: #004182;
+        --blue-soft: #e8f3ff;
+        --ink: #191919;
+        --muted: #666666;
+        --subtle: #8c8c8c;
+        --line: #dfdeda;
+        --canvas: #f4f2ee;
+        --card: #ffffff;
+        --radius: 8px;
+        --shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--canvas);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--blue-dark);
+        text-decoration: underline;
+      }
+
+      a:focus-visible {
+        border-radius: 4px;
+        outline: 3px solid rgba(10, 102, 194, 0.35);
+        outline-offset: 3px;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        z-index: 100;
+        padding: 10px 14px;
+        border-radius: 6px;
+        background: var(--ink);
+        color: #ffffff;
+        transform: translateY(-150%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .profile-rationale {
+        border-bottom: 1px solid #c9aa3f;
+        background: #f7d667;
+        color: #2c2508;
+      }
+
+      .profile-rationale__inner {
+        width: min(1128px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .profile-rationale details {
+        margin: 0;
+      }
+
+      .profile-rationale summary {
+        display: flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 11px 0;
+        cursor: pointer;
+        font-weight: 750;
+        list-style: none;
+      }
+
+      .profile-rationale summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .profile-rationale summary:hover .profile-rationale__question {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .profile-rationale summary:focus-visible {
+        border-radius: 4px;
+        outline: 2px solid rgba(44, 37, 8, 0.38);
+        outline-offset: -2px;
+      }
+
+      .profile-rationale__action {
+        flex: 0 0 auto;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .profile-rationale__action--open {
+        display: none;
+      }
+
+      .profile-rationale details[open] .profile-rationale__action--closed {
+        display: none;
+      }
+
+      .profile-rationale details[open] .profile-rationale__action--open {
+        display: inline;
+      }
+
+      .profile-rationale__explanation {
+        max-width: 78ch;
+        padding: 1px 0 18px;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .profile-rationale__explanation p {
+        margin-bottom: 10px;
+      }
+
+      .profile-rationale__explanation p:last-child {
+        margin-bottom: 0;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        min-height: 56px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+      }
+
+      .site-header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(1128px, calc(100% - 32px));
+        min-height: 56px;
+        margin: 0 auto;
+        gap: 28px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .brand:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .brand__mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 4px;
+        background: var(--blue);
+        color: #ffffff;
+        font-size: 16px;
+        letter-spacing: -0.04em;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .site-nav a {
+        padding: 9px 12px;
+        border-radius: 6px;
+        color: #4f4f4f;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .site-nav a:hover {
+        background: #f3f3f3;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .site-nav .site-nav__primary {
+        border: 1px solid var(--blue);
+        border-radius: 999px;
+        color: var(--blue);
+      }
+
+      .site-nav .site-nav__primary:hover {
+        background: var(--blue-soft);
+        color: var(--blue-dark);
+      }
+
+      .page-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 782px) 322px;
+        align-items: start;
+        width: min(1128px, calc(100% - 32px));
+        margin: 24px auto 48px;
+        gap: 24px;
+      }
+
+      .profile-column,
+      .sidebar {
+        display: grid;
+        gap: 16px;
+      }
+
+      .card {
+        overflow: hidden;
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      .card__body {
+        padding: 24px;
+      }
+
+      .cover {
+        height: 196px;
+        background:
+          linear-gradient(90deg, rgba(0, 65, 130, 0.18), rgba(0, 0, 0, 0.02)),
+          url("{{ '/images/heroBack.jpg' | relative_url }}") center 46% / cover no-repeat;
+      }
+
+      .intro {
+        position: relative;
+        padding: 84px 24px 24px;
+      }
+
+      .profile-photo {
+        position: absolute;
+        top: -112px;
+        left: 24px;
+        width: 168px;
+        height: 168px;
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+        background: #ffffff;
+        object-fit: cover;
+        object-position: 50% 34%;
+      }
+
+      .intro__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        gap: 24px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 4px;
+        font-size: clamp(28px, 4vw, 34px);
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 21px;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      h3 {
+        margin-bottom: 2px;
+        font-size: 17px;
+        line-height: 1.35;
+      }
+
+      .headline {
+        margin-bottom: 6px;
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .meta {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .meta__separator {
+        margin: 0 5px;
+        color: var(--subtle);
+      }
+
+      .current-status {
+        align-self: start;
+        padding-top: 7px;
+      }
+
+      .current-status__label {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--subtle);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.055em;
+        text-transform: uppercase;
+      }
+
+      .current-status__value {
+        display: block;
+        font-weight: 700;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 16px;
+        border: 1px solid var(--blue);
+        border-radius: 999px;
+        color: var(--blue);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .button:hover {
+        background: var(--blue-soft);
+        color: var(--blue-dark);
+        text-decoration: none;
+      }
+
+      .button--primary {
+        background: var(--blue);
+        color: #ffffff;
+      }
+
+      .button--primary:hover {
+        background: var(--blue-dark);
+        color: #ffffff;
+      }
+
+      .about-copy {
+        max-width: 70ch;
+        margin-bottom: 0;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .entry-list {
+        display: grid;
+        gap: 0;
+      }
+
+      .entry {
+        position: relative;
+        display: grid;
+        grid-template-columns: 108px minmax(0, 1fr);
+        gap: 20px;
+        padding: 20px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .entry:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .entry:last-child {
+        padding-bottom: 0;
+      }
+
+      .entry__period {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .entry__company {
+        margin-bottom: 7px;
+        color: #4f4f4f;
+        font-size: 15px;
+      }
+
+      .entry__summary {
+        margin-bottom: 0;
+        color: #404040;
+      }
+
+      .entry__points {
+        margin: 10px 0 0;
+        padding-left: 19px;
+        color: #404040;
+      }
+
+      .entry__points li + li {
+        margin-top: 7px;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill {
+        padding: 7px 12px;
+        border: 1px solid #d6d6d6;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #343434;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .sidebar .card__body {
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 16px;
+        font-size: 18px;
+      }
+
+      .fact-list {
+        display: grid;
+        margin: 0;
+        gap: 14px;
+      }
+
+      .fact-list div {
+        display: grid;
+        gap: 2px;
+      }
+
+      .fact-list dt {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.045em;
+        text-transform: uppercase;
+      }
+
+      .fact-list dd {
+        margin: 0;
+        overflow-wrap: anywhere;
+        font-weight: 600;
+      }
+
+      .sidebar-list {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        gap: 13px;
+        list-style: none;
+      }
+
+      .sidebar-list li {
+        padding-bottom: 13px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sidebar-list li:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .sidebar-list strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .sidebar-list span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .page-footer {
+        padding: 0 16px 36px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      @media (max-width: 900px) {
+        .page-shell {
+          grid-template-columns: 1fr;
+          width: min(760px, calc(100% - 24px));
+          margin-top: 16px;
+        }
+
+        .sidebar {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .profile-rationale__inner {
+          width: calc(100% - 32px);
+        }
+
+        .profile-rationale summary {
+          align-items: flex-start;
+          gap: 16px;
+          padding: 12px 0;
+        }
+
+        .profile-rationale__action {
+          padding-top: 2px;
+        }
+
+        .site-header__inner {
+          width: calc(100% - 24px);
+        }
+
+        .brand__name,
+        .site-nav a:not(.site-nav__primary) {
+          display: none;
+        }
+
+        .page-shell {
+          width: 100%;
+          margin-top: 0;
+          gap: 8px;
+        }
+
+        .profile-column,
+        .sidebar {
+          gap: 8px;
+        }
+
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          border-radius: 0;
+          box-shadow: 0 1px 0 rgba(0, 0, 0, 0.13);
+        }
+
+        .cover {
+          height: 128px;
+        }
+
+        .intro {
+          padding: 66px 16px 20px;
+        }
+
+        .profile-photo {
+          top: -72px;
+          left: 16px;
+          width: 128px;
+          height: 128px;
+        }
+
+        .intro__grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .current-status {
+          padding-top: 0;
+        }
+
+        .card__body,
+        .sidebar .card__body {
+          padding: 20px 16px;
+        }
+
+        .entry {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+
+        .entry__period {
+          order: 2;
+        }
+
+        .entry__content {
+          display: contents;
+        }
+
+        .entry__content h3 {
+          order: 1;
+        }
+
+        .entry__company {
+          order: 3;
+        }
+
+        .entry__summary,
+        .entry__points {
+          order: 4;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+          font-size: 12px;
+        }
+
+        .site-header,
+        .profile-rationale,
+        .actions,
+        .page-footer {
+          display: none;
+        }
+
+        .page-shell {
+          display: block;
+          width: 100%;
+          margin: 0;
+        }
+
+        .profile-column,
+        .sidebar {
+          display: block;
+        }
+
+        .card {
+          break-inside: avoid;
+          margin-bottom: 12px;
+          box-shadow: 0 0 0 1px #cccccc;
+        }
+
+        .sidebar {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#profile-content">Skip to profile</a>
+
+    <aside class="profile-rationale" aria-label="Why this profile is independent">
+      <div class="profile-rationale__inner">
+        <details>
+          <summary>
+            <span class="profile-rationale__question">
+              Why don’t you have a LinkedIn profile?
+            </span>
+            <span class="profile-rationale__action" aria-hidden="true">
+              <span class="profile-rationale__action--closed">Read why</span>
+              <span class="profile-rationale__action--open">Close</span>
+            </span>
+          </summary>
+          <div class="profile-rationale__explanation">
+            <p>
+              The short version is that the incentives are misaligned. A professional network
+              that centralizes employment history, relationships, and contact details creates an
+              unusually valuable dataset for scraping, cross-referencing, and breach-based
+              enrichment. The platform captures the upside; its users absorb most of the privacy
+              risk.
+            </p>
+            <p>
+              The feed has the same incentive problem. It rewards reach, repetition, and
+              self-promotion more reliably than accuracy or useful discussion, so engagement bait
+              and spam crowd out the conversations I would actually want to read. I would rather
+              publish a small page I control and spend my attention elsewhere.
+            </p>
+          </div>
+        </details>
+      </div>
+    </aside>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#top" aria-label="Kevin Coleman profile">
+          <span class="brand__mark" aria-hidden="true">KC</span>
+          <span class="brand__name">Kevin Coleman</span>
+        </a>
+        <nav class="site-nav" aria-label="Profile navigation">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="mailto:{{ site.email }}" class="site-nav__primary">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell" id="profile-content">
+      <div class="profile-column">
+        <section class="card" id="top" aria-labelledby="profile-name">
+          <div class="cover" role="img" aria-label="Soft-focus city scene"></div>
+          <div class="intro">
+            <img
+              class="profile-photo"
+              src="{{ '/images/kevin.jpg' | relative_url }}"
+              alt="Kevin Coleman"
+              width="168"
+              height="168"
+            >
+            <div class="intro__grid">
+              <div>
+                <h1 id="profile-name">Kevin Coleman</h1>
+                <p class="headline">Engineering Leader | ML Engineering, Trust &amp; Safety</p>
+                <p class="meta">
+                  Vietnam
+                  <span class="meta__separator" aria-hidden="true">·</span>
+                  <a href="mailto:{{ site.email }}">Contact info</a>
+                </p>
+              </div>
+              <div class="current-status">
+                <span class="current-status__label">Current</span>
+                <span class="current-status__value">Career break</span>
+              </div>
+            </div>
+            <div class="actions" aria-label="Profile actions">
+              <a class="button button--primary" href="mailto:{{ site.email }}">Email Kevin</a>
+              <a class="button" href="https://github.com/{{ site.github_username }}">View GitHub</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="about" aria-labelledby="about-heading">
+          <div class="card__body">
+            <h2 id="about-heading">About</h2>
+            <p class="about-copy">
+              I’m an engineering leader focused on ML engineering, trust and safety, and
+              distributed systems. Most recently at Grab, I designed and led multimodal
+              moderation systems serving millions of daily transactions, built an engineering
+              team from the ground up, and partnered across Product, Risk, and Operations on
+              safety, fraud, and abuse prevention. I’m currently taking a career break in Vietnam.
+            </p>
+          </div>
+        </section>
+
+        <section class="card" id="experience" aria-labelledby="experience-heading">
+          <div class="card__body">
+            <h2 id="experience-heading">Experience</h2>
+            <div class="entry-list">
+              <article class="entry">
+                <div class="entry__period">2026–Present</div>
+                <div class="entry__content">
+                  <h3>Career break</h3>
+                  <p class="entry__company">Vietnam</p>
+                  <p class="entry__summary">
+                    Taking a career break following six years leading ML engineering and safety
+                    systems at Grab.
+                  </p>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2020–2026</div>
+                <div class="entry__content">
+                  <h3>Principal Engineer, Safety &amp; Content Moderation</h3>
+                  <p class="entry__company">Grab</p>
+                  <ul class="entry__points">
+                    <li>
+                      Designed and led a multimodal, multi-tier content moderation engine using
+                      tuned LLMs and AI at scale, supporting image, text, and video across millions
+                      of daily transactions.
+                    </li>
+                    <li>
+                      Partnered across Product, Risk, and Operations to build user-facing safety
+                      features, fraud detection systems, and abuse prevention protocols.
+                    </li>
+                    <li>
+                      Architected Grab’s React eKYC experience with ML-based facial recognition,
+                      modular case management, and distributed microservices.
+                    </li>
+                    <li>
+                      Built and mentored a high-performing engineering team; owned the vertical’s
+                      roadmap, OKRs, and hiring.
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2019–2020</div>
+                <div class="entry__content">
+                  <h3>Tech Lead, Software Engineering</h3>
+                  <p class="entry__company">Yelp Ads</p>
+                  <ul class="entry__points">
+                    <li>
+                      Re-architected the ad bidding engine for granular targeting without adding
+                      latency, increasing campaign precision.
+                    </li>
+                    <li>
+                      Designed a generalized campaign framework to improve filtering and
+                      scalability across the ad marketplace.
+                    </li>
+                    <li>
+                      Led a cross-organization keyword targeting project that expanded ad delivery
+                      inventory for growth business categories.
+                    </li>
+                    <li>Presented long-term ad platform initiatives across Yelp’s global offices.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2019</div>
+                <div class="entry__content">
+                  <h3>Team Lead, Ruby on Rails</h3>
+                  <p class="entry__company">Captrav</p>
+                  <ul class="entry__points">
+                    <li>
+                      Led development of a Rails MVP that parsed and analyzed millions of dollars
+                      in travel invoices from enterprise email and PDF attachments.
+                    </li>
+                    <li>
+                      Designed an information extraction and indexing pipeline for more than
+                      500,000 travel-technology emails.
+                    </li>
+                    <li>
+                      Migrated batch jobs to AWS Lambda, reducing email processing time from four
+                      hours to 20 minutes.
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2015–2018</div>
+                <div class="entry__content">
+                  <h3>Senior Software Engineer</h3>
+                  <p class="entry__company">Zugata</p>
+                  <p class="entry__summary">
+                    Built recommendation-driven mass email systems for feedback requests at an HR
+                    technology startup that raised $10 million and was acquired by Culture Amp.
+                  </p>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2013–2015</div>
+                <div class="entry__content">
+                  <h3>Senior Software Engineer</h3>
+                  <p class="entry__company">Spark Start</p>
+                  <p class="entry__summary">
+                    Delivered full-stack Ruby on Rails applications that brought early-stage
+                    business ideas to life.
+                  </p>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2012–2013</div>
+                <div class="entry__content">
+                  <h3>Software Engineer</h3>
+                  <p class="entry__company">Ticket Alternative</p>
+                  <p class="entry__summary">
+                    Developed full-stack Ruby on Rails applications for a ticketing platform that
+                    sold more than 500,000 tickets.
+                  </p>
+                </div>
+              </article>
+
+              <article class="entry">
+                <div class="entry__period">2011–2012</div>
+                <div class="entry__content">
+                  <h3>Software Engineer</h3>
+                  <p class="entry__company">CareerBuilder</p>
+                  <p class="entry__summary">
+                    Built C# and ASP.NET systems for knowledge discovery and indexing across
+                    1.5 million applicant résumés per month.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="education" aria-labelledby="education-heading">
+          <div class="card__body">
+            <h2 id="education-heading">Education</h2>
+            <article>
+              <h3>Georgia Institute of Technology</h3>
+              <p class="entry__company">Bachelor of Science, Electrical Engineering</p>
+              <p class="meta">Co-Op designation</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card" id="skills" aria-labelledby="skills-heading">
+          <div class="card__body">
+            <h2 id="skills-heading">Skills</h2>
+            <div class="skills" aria-label="Professional skills">
+              <span class="skill">ML Engineering</span>
+              <span class="skill">Trust &amp; Safety</span>
+              <span class="skill">Engineering Leadership</span>
+              <span class="skill">Distributed Systems</span>
+              <span class="skill">Golang</span>
+              <span class="skill">Python</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">React</span>
+              <span class="skill">React Native</span>
+              <span class="skill">Ruby on Rails</span>
+              <span class="skill">AWS</span>
+              <span class="skill">Terraform</span>
+              <span class="skill">Docker</span>
+              <span class="skill">PostgreSQL</span>
+              <span class="skill">Elasticsearch</span>
+              <span class="skill">Redis</span>
+              <span class="skill">Pub/Sub</span>
+              <span class="skill">Recruiting</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="sidebar" aria-label="Profile details">
+        <section class="card" aria-labelledby="details-heading">
+          <div class="card__body">
+            <h2 id="details-heading">Profile details</h2>
+            <dl class="fact-list">
+              <div>
+                <dt>Location</dt>
+                <dd>Vietnam</dd>
+              </div>
+              <div>
+                <dt>Current status</dt>
+                <dd>Career break</dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+              </div>
+              <div>
+                <dt>GitHub</dt>
+                <dd>
+                  <a href="https://github.com/{{ site.github_username }}">
+                    github.com/{{ site.github_username }}
+                  </a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="focus-heading">
+          <div class="card__body">
+            <h2 id="focus-heading">Areas of focus</h2>
+            <ul class="sidebar-list">
+              <li>
+                <strong>ML at scale</strong>
+                <span>Multimodal systems, LLMs, and human-in-the-loop decisions</span>
+              </li>
+              <li>
+                <strong>Trust &amp; Safety</strong>
+                <span>Content moderation, fraud detection, and abuse prevention</span>
+              </li>
+              <li>
+                <strong>Technical leadership</strong>
+                <span>Architecture, roadmaps, hiring, mentorship, and cross-functional delivery</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="more-heading">
+          <div class="card__body">
+            <h2 id="more-heading">More from Kevin</h2>
+            <ul class="sidebar-list">
+              <li>
+                <strong><a href="{{ '/projects/' | relative_url }}">Projects &amp; awards</a></strong>
+                <span>Products, tools, open source work, and hackathon projects</span>
+              </li>
+              <li>
+                <strong><a href="{{ '/' | relative_url }}">Writing</a></strong>
+                <span>Essays on engineering, systems, and technology</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="page-footer">
+      Independent professional profile for Kevin Coleman. This page is not affiliated with
+      LinkedIn.
+    </footer>
+  </body>
+</html>
