@@ -323,6 +323,236 @@
             .hidden {
                 display: none !important;
             }
+
+            /* Full-screen Translate UI mode */
+            .translateMode {
+                position: fixed;
+                inset: 0;
+                z-index: 10;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                min-height: 100dvh;
+                padding: 18px;
+                overflow: hidden;
+                color: #202124;
+                background: #f8f9fa;
+            }
+            .translateMode::before,
+            .translateMode::after {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                border-radius: 50%;
+                pointer-events: none;
+            }
+            .translateMode::before {
+                top: -22vmin;
+                right: -16vmin;
+                width: 56vmin;
+                height: 56vmin;
+                background: #e8f0fe;
+            }
+            .translateMode::after {
+                bottom: -30vmin;
+                left: -22vmin;
+                width: 66vmin;
+                height: 66vmin;
+                background: #e6f4ea;
+            }
+            .translateModeHeader,
+            .translateModeFooter {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                width: min(100%, 1120px);
+                margin: 0 auto;
+            }
+            .translateModeHeader {
+                padding-bottom: 12px;
+            }
+            .translateModeBrand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 16px;
+                font-weight: 700;
+            }
+            .translateModeBrandMark {
+                display: grid;
+                width: 30px;
+                height: 30px;
+                place-items: center;
+                border-radius: 9px;
+                color: #fff;
+                background: #1a73e8;
+            }
+            .translateModeConfig {
+                padding: 10px 14px;
+                border: 2px solid #202124;
+                border-radius: 999px;
+                background: #fff;
+                box-shadow: none;
+                font-size: 13px;
+            }
+            .translateModeMain {
+                display: grid;
+                place-items: center;
+                text-align: center;
+            }
+            .listeningContent {
+                display: grid;
+                justify-items: center;
+                width: min(100%, 620px);
+                padding-bottom: 5vh;
+            }
+            .languagePair {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: clamp(30px, 6vh, 68px);
+                padding: 8px 13px;
+                border: 1px solid #dadce0;
+                border-radius: 999px;
+                color: #5f6368;
+                background: rgba(255, 255, 255, 0.76);
+                font-size: 14px;
+            }
+            .listeningMic {
+                position: relative;
+                display: grid;
+                width: clamp(154px, 23vw, 226px);
+                aspect-ratio: 1;
+                place-items: center;
+                border-radius: 50%;
+                color: #fff;
+                background: #1a73e8;
+                box-shadow: 0 10px 28px rgba(26, 115, 232, 0.28);
+            }
+            .listeningMic::before,
+            .listeningMic::after {
+                content: "";
+                position: absolute;
+                inset: -16px;
+                border: 2px solid rgba(26, 115, 232, 0.42);
+                border-radius: inherit;
+                animation: listen-ring 2.2s ease-out infinite;
+            }
+            .listeningMic::after {
+                animation-delay: 1.1s;
+            }
+            .listeningMic svg {
+                width: 46%;
+                height: 46%;
+            }
+            .listeningEyebrow {
+                margin: clamp(34px, 5vh, 52px) 0 0;
+                color: #1a73e8;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+            .listeningTitle {
+                margin: 8px 0 0;
+                font-size: clamp(30px, 5vw, 48px);
+                line-height: 1.1;
+                letter-spacing: -0.05em;
+            }
+            .listeningHint {
+                margin: 12px 0 0;
+                color: #5f6368;
+                font-size: clamp(14px, 2vw, 17px);
+            }
+            .soundWave {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 38px;
+                gap: 5px;
+                margin-top: 28px;
+            }
+            .soundWave span {
+                width: 5px;
+                height: 10px;
+                border-radius: 999px;
+                background: #1a73e8;
+                animation: listen-wave 0.86s ease-in-out infinite alternate;
+            }
+            .soundWave span:nth-child(2) { animation-delay: 0.11s; }
+            .soundWave span:nth-child(3) { animation-delay: 0.24s; }
+            .soundWave span:nth-child(4) { animation-delay: 0.36s; }
+            .soundWave span:nth-child(5) { animation-delay: 0.18s; }
+            .soundWave span:nth-child(6) { animation-delay: 0.04s; }
+            .soundWave span:nth-child(7) { animation-delay: 0.28s; }
+            .listeningActions {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+                margin-top: 24px;
+            }
+            .listeningTestButton {
+                min-width: 118px;
+                padding: 11px 17px;
+                border: 2px solid #1a73e8;
+                border-radius: 999px;
+                color: #1a73e8;
+                background: #fff;
+                box-shadow: none;
+                font-size: 14px;
+                font-weight: 700;
+            }
+            .listeningTestButton.primary {
+                color: #fff;
+                background: #1a73e8;
+            }
+            .translateModeFooter {
+                color: #5f6368;
+                font-size: 13px;
+            }
+            .listeningDot {
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                margin-right: 7px;
+                border-radius: 50%;
+                background: #34a853;
+                animation: listening-dot 1.3s ease-in-out infinite;
+            }
+            @keyframes listen-ring {
+                0% { transform: scale(0.8); opacity: 0.8; }
+                100% { transform: scale(1.3); opacity: 0; }
+            }
+            @keyframes listen-wave {
+                from { height: 8px; opacity: 0.5; }
+                to { height: 34px; opacity: 1; }
+            }
+            @keyframes listening-dot {
+                50% { transform: scale(1.5); opacity: 0.45; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .listeningMic::before,
+                .listeningMic::after,
+                .soundWave span,
+                .listeningDot {
+                    animation: none;
+                }
+            }
+            @media (max-width: 520px) {
+                .translateMode {
+                    padding: 14px;
+                }
+                .translateModeBrand {
+                    font-size: 14px;
+                }
+                .translateModeConfig {
+                    padding: 8px 11px;
+                }
+                .translateModeFooter span:last-child {
+                    display: none;
+                }
+            }
         </style>
     </head>
 
@@ -340,6 +570,14 @@
                     </div>
                 </div>
                 <div class="btnRow">
+                    <button
+                        id="translateModeBtn"
+                        class="btn primary"
+                        type="button"
+                        title="Open full-screen Translate UI mode"
+                    >
+                        Translate UI
+                    </button>
                     <button
                         id="stopBtn"
                         class="btn danger"
@@ -586,6 +824,56 @@
             </section>
         </div>
 
+        <!-- FULL-SCREEN TRANSLATE UI MODE -->
+        <section
+            id="translateMode"
+            class="translateMode hidden"
+            aria-label="Translate UI listening mode"
+        >
+            <header class="translateModeHeader">
+                <div class="translateModeBrand">
+                    <span class="translateModeBrandMark" aria-hidden="true">A</span>
+                    <span>Translate UI</span>
+                </div>
+                <button id="configModeBtn" class="btn translateModeConfig" type="button">
+                    ← Configuration
+                </button>
+            </header>
+
+            <main class="translateModeMain">
+                <div class="listeningContent">
+                    <div class="languagePair" aria-label="Vietnamese to English">
+                        <span>Vietnamese</span><span aria-hidden="true">→</span><span>English</span>
+                    </div>
+                    <div class="listeningMic" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Z" fill="currentColor" />
+                            <path d="M19 11a7 7 0 0 1-14 0M12 18v3M9 21h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <p class="listeningEyebrow">Listening</p>
+                    <h2 class="listeningTitle">Speak now</h2>
+                    <p class="listeningHint">Your voice is ready to translate.</p>
+                    <div class="soundWave" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="listeningActions" aria-label="Phrase test controls">
+                        <button id="translateSpeakA" class="btn listeningTestButton primary" type="button">
+                            Test A
+                        </button>
+                        <button id="translateSpeakB" class="btn listeningTestButton" type="button">
+                            Test B
+                        </button>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="translateModeFooter">
+                <span><span class="listeningDot" aria-hidden="true"></span>Listening for speech</span>
+                <span>Press Esc to return to configuration</span>
+            </footer>
+        </section>
+
         <script>
             // ---------------------------
             // Presets (edit as you like)
@@ -617,6 +905,10 @@
                 {
                     label: "I want to see you topless",
                     value: "Dịch cụm từ: 'Em muốn nhìn thấy bạn cởi trần'",
+                },
+                {
+                    label: "You look ticklish. I could fart on you",
+                    value: "Dịch cụm từ: 'Trông bạn dễ bị cù lét quá. Tôi có thể xì hơi vào bạn mất.'",
                 },
             ];
 
@@ -654,6 +946,11 @@
 
             const supportHint = document.getElementById("supportHint");
             const stopBtn = document.getElementById("stopBtn");
+            const translateMode = document.getElementById("translateMode");
+            const translateModeBtn = document.getElementById("translateModeBtn");
+            const configModeBtn = document.getElementById("configModeBtn");
+            const translateSpeakA = document.getElementById("translateSpeakA");
+            const translateSpeakB = document.getElementById("translateSpeakB");
 
             const setupSpeakA = document.getElementById("setupSpeakA");
             const setupSpeakB = document.getElementById("setupSpeakB");
@@ -1009,6 +1306,17 @@
                 bReadScreen.classList.add("hidden");
             }
 
+            function openTranslateMode() {
+                stopSpeaking();
+                translateMode.classList.remove("hidden");
+                configModeBtn.focus();
+            }
+
+            function closeTranslateMode() {
+                translateMode.classList.add("hidden");
+                translateModeBtn.focus();
+            }
+
             function showBReadScreen() {
                 bReadText.textContent = state.messageB || "";
                 playScreen.classList.add("hidden");
@@ -1047,6 +1355,21 @@
             messageB.addEventListener("input", updateCharCounts);
 
             stopBtn.addEventListener("click", stopSpeaking);
+            translateModeBtn.addEventListener("click", openTranslateMode);
+            configModeBtn.addEventListener("click", closeTranslateMode);
+            translateSpeakA.addEventListener("click", () => {
+                setStateFromSetup();
+                speak(state.messageA);
+            });
+            translateSpeakB.addEventListener("click", () => {
+                setStateFromSetup();
+                speakBSequence();
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape" && !translateMode.classList.contains("hidden")) {
+                    closeTranslateMode();
+                }
+            });
 
             setupSpeakA.addEventListener("click", () => {
                 setStateFromSetup();
