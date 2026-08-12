@@ -33,6 +33,9 @@ permalink: /projects/
 - **Image Rename** – Rename screenshots with AI (local inference)
   [github.com](https://github.com/KevinColemanInc/img_rename)
 
+- **LinkedIn** – Self-hosted LinkedIn profile
+  [/linkedin.com](/linkedin.com)
+
 ## Tools
 Vibe-coded tools used to enhance my life through critical analysis.
 

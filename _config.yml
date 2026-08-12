@@ -27,6 +27,14 @@ theme: minima
 
 google_analytics: UA-48081941-1
 
+header_pages:
+  - index.md
+  - contact.md
+  - projects.md
+  - about.md
+  - linkedin.com
+  - coleman-laws.md
+
 plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
