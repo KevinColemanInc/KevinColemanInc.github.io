@@ -34,7 +34,7 @@ permalink: /projects/
   [github.com](https://github.com/KevinColemanInc/img_rename)
 
 - **LinkedIn** – Self-hosted LinkedIn profile
-  [/linkedin.com](/linkedin.com)
+  [/linkedin.com]Why doesn't Kevin have a LinkedIn profile? (/linkedin.com)
 
 ## Tools
 Vibe-coded tools used to enhance my life through critical analysis.
