@@ -6,7 +6,7 @@ comments: true
 categories:
 ---
 
-I don't want less food. I want healthier food—food that doesn't spike my blood sugar or leave me feeling awful afterward. I want food that tastes good and makes me feel good.
+I don't want less food. I want healthier food that doesn't spike my blood sugar or leave me feeling awful afterward. I want food that tastes good and makes me feel good.
 
 There are four knobs:
 
