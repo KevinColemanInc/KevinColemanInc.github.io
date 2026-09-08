@@ -23,6 +23,8 @@ And with each bite, you anticipate the next one.
 
 I can't skip dinner with my friends just because I had a big breakfast. But I can order the salad instead of the lasagna.
 
+----
+
 Restriction attacks quantity; environment design attacks the mechanics that produce overconsumption.
 
 ----
