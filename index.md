@@ -1,7 +1,4 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 ---
 
@@ -18,9 +15,3 @@ layout: home
   </h1>
   <div class="entry-content">{{ content }}</div>
 </div>
-<br>
-<br>
-<hr>
-<br>
-<br>
-<h3> More posts</h3>

@@ -8,7 +8,7 @@ categories:
 
 I don't want less food. I want healthier food that doesn't spike my blood sugar or leave me feeling awful afterward. I want food that tastes good and makes me feel good.
 
-There are four knobs:
+There are four knobs (STEAM):
 
 * **Stimulation**
 * **Access**
@@ -31,7 +31,7 @@ I don't want less social media. I want to consume the good parts: reconnecting w
 
 I want social media that helps me live a fulfilling life instead of consuming it.
 
-The four knobs:
+There are four knobs (STEAM):
 
 * **Stimulation**
 * **Access**

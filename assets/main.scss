@@ -20,3 +20,22 @@ hr {
   object-fit: cover;
   border-radius: 4px;
 }
+
+.recent-posts {
+  border-top: 1px solid $grey-color-light;
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+.archive-link {
+  font-weight: 600;
+  margin-top: 2.5rem;
+}
+
+.archive-year {
+  margin-top: 2.5rem;
+}
+
+.archive-year .post-list {
+  margin-bottom: 0;
+}
