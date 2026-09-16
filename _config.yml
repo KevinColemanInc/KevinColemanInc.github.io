@@ -29,6 +29,7 @@ google_analytics: UA-48081941-1
 
 header_pages:
   - index.md
+  - start-here.md
   - contact.md
   - projects.md
   - about.md
