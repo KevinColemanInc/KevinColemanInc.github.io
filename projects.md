@@ -51,6 +51,9 @@ Vibe-coded tools used to enhance my life through critical analysis.
 - **Practice Vietnamese typing with Telex** – practice typing Vietnamese sentences using telex  
   [./vietnamese-typing](/vietnamese-typing/)
 
+- **Time Colors** – paint a date range with colored plans and see the time split  
+  [./time-colors](/time-colors/)
+
 
 ## SaaS
 - **698 Expat** – (deprecated) LLM translations with multiplayer mode  
