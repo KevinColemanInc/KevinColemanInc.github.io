@@ -34,12 +34,12 @@ permalink: /projects/
   [github.com](https://github.com/KevinColemanInc/img_rename)
 
 - **LinkedIn** – Self-hosted LinkedIn profile
+  - [kcoleman.me/linkedin.com]({{ '/linkedin.com/' | relative_url }}) {% include copy-link.html label="kcoleman.me/linkedin.com" url="https://kcoleman.me/linkedin.com/" %}
+  - [linkedin.com.kcoleman.me/linkedin.com/](https://linkedin.com.kcoleman.me/linkedin.com/) {% include copy-link.html label="linkedin.com.kcoleman.me/linkedin.com/" %}
+  - [linkedin.com.kcoleman.me/in/linkedin.com](https://linkedin.com.kcoleman.me/in/linkedin.com) {% include copy-link.html label="linkedin.com.kcoleman.me/in/linkedin.com" %}
 
-  Why doesn't Kevin have a LinkedIn profile?
-
-  - [kcoleman.me/linkedin.com]({{ '/linkedin.com/' | relative_url }})
-  - [linkedin.com.kcoleman.me/linkedin.com/](https://linkedin.com.kcoleman.me/linkedin.com/)
-  - [linkedin.com.kcoleman.me/in/linkedin.com](https://linkedin.com.kcoleman.me/in/linkedin.com)
+<link rel="stylesheet" href="{{ '/assets/copy-links.css' | relative_url }}">
+<script src="{{ '/assets/copy-links.js' | relative_url }}" defer></script>
 
 ## Tools
 Vibe-coded tools used to enhance my life through critical analysis.
