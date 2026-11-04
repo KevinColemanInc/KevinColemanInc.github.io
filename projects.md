@@ -44,6 +44,8 @@ permalink: /projects/
 ## Tools
 Vibe-coded tools used to enhance my life through critical analysis.
 
+- **Wise Transfer Details** – share receiving bank details by [link, QR code, or email](/wise-transfer/)
+
 - **Nearest-palette** – vector search for similar color palettes  
   [github.com/KevinColemanInc/nearest-palette](https://github.com/KevinColemanInc/nearest-palette)
 
