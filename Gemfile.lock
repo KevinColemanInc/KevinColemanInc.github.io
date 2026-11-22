@@ -1,3 +1,9 @@
+PATH
+  remote: plugins/jekyll-blog-audio
+  specs:
+    jekyll-blog-audio (0.1.0)
+      jekyll (~> 4.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -86,6 +92,7 @@ DEPENDENCIES
   base64
   csv
   jekyll (= 4.3.4)
+  jekyll-blog-audio!
   jekyll-feed (~> 0.6)
   jekyll-sitemap
   kramdown-parser-gfm

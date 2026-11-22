@@ -42,5 +42,6 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - plugins
 include:
   - _redirects

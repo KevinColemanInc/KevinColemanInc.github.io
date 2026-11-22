@@ -1,0 +1,4 @@
+chatterbox-tts==0.1.7
+faster-whisper==1.2.1
+# Perth imports pkg_resources, which recent setuptools releases removed.
+setuptools==80.9.0

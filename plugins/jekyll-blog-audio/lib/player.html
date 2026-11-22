@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ '/assets/blog-audio.css' | relative_url }}">
+<div class="blog-audio" data-manifest="{{ audio_manifest | relative_url | escape }}" hidden>
+  <button type="button" data-play><span aria-hidden="true" class="blog-audio-icon"></span><span data-play-label>Listen to article</span></button>
+  <span data-reading-time></span>
+  <span data-voice></span>
+  <label>Speed
+    <select data-rate>
+      <option value="1">1×</option>
+      <option value="1.25">1.25×</option>
+      <option value="1.5">1.5×</option>
+      <option value="2">2×</option>
+    </select>
+  </label>
+  <span role="status" data-status></span>
+</div>
+<script src="{{ '/assets/blog-audio.js' | relative_url }}" defer></script>
