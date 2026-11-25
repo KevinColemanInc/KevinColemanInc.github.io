@@ -5,12 +5,11 @@
 
   const button = player.querySelector('[data-play]');
   const playLabel = button.querySelector('[data-play-label]');
-  const voiceLabel = player.querySelector('[data-voice]');
+  const back = player.querySelector('[data-back]');
+  const next = player.querySelector('[data-next]');
   const rate = player.querySelector('[data-rate]');
   const status = player.querySelector('[data-status]');
   const audio = new Audio();
-  const speech = window.speechSynthesis;
-  const canSpeak = Boolean(speech && window.SpeechSynthesisUtterance);
   const blockSelector = 'p, div, li, blockquote, td, th, br, section, h1, h2, h3, h4, h5, h6';
   const skipped = 'pre, script, style, iframe, svg, audio, video, template';
   const interactive = 'a, button, input, select, textarea, label, summary, [contenteditable], [role="button"]';
@@ -20,20 +19,29 @@
   let segments;
   let index = 0;
   let playing = false;
-  let utterance;
   let playbackId = 0;
-  let mode;
   let activeBlock;
   let activeWord;
   let wordFrame;
+  let followScrollY;
+
+  function adjacentBlockStart(direction) {
+    const { block } = segments[index];
+    let position = index + direction;
+    while (segments[position]?.block === block) position += direction;
+    return starts.get(segments[position]?.block);
+  }
+
+  function updateNavigation() {
+    back.disabled = adjacentBlockStart(-1) === undefined;
+    next.disabled = adjacentBlockStart(1) === undefined;
+  }
 
   function setPlayLabel(label) {
     playLabel.textContent = label;
     button.toggleAttribute('data-playing', label === 'Pause');
-  }
-
-  function browserVoice(voice = speech?.getVoices()[0]) {
-    return voice?.name ? `Browser voice · ${voice.name}` : 'Browser voice';
+    back.hidden = next.hidden = !playing;
+    if (playing) updateNavigation();
   }
 
   function highlight(block) {
@@ -67,10 +75,30 @@
     highlightWord();
   }
 
+  function followText(range) {
+    if (window.scrollY !== followScrollY) return;
+    const line = range?.getClientRects()[0];
+    if (!line) return;
+
+    const visibleTop = player.getBoundingClientRect().height;
+    const visibleBottom = document.documentElement.clientHeight;
+    const visibleHeight = visibleBottom - visibleTop;
+    if (visibleHeight <= 0) return;
+
+    if (line.top < visibleTop || line.bottom > visibleBottom) {
+      window.scrollBy({ top: line.top - visibleTop - visibleHeight * 0.25, behavior: 'instant' });
+      followScrollY = window.scrollY;
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY !== followScrollY) followScrollY = undefined;
+  }, { passive: true });
+
   function trackWords(id, segment) {
-    if (!segment.words?.length || segment.firstWord === undefined || !window.Highlight || !CSS.highlights) return;
+    if (!segment.words?.length) return;
     const block = blocks[segment.block];
-    const ranges = segment.words.map(([word, start, end]) => {
+    const ranges = segment.firstWord === undefined ? [] : segment.words.map(([word, start, end]) => {
       const token = block.tokens[segment.firstWord + word];
       if (!token) return [null, start, end];
       const range = document.createRange();
@@ -82,9 +110,11 @@
       return [range, start, end];
     });
     function update() {
-      if (!current(id) || mode !== 'audio') return;
+      if (!current(id)) return;
       const time = audio.currentTime;
-      highlightWord(ranges.find(([, start, end]) => start <= time && time < end)?.[0]);
+      const word = ranges.find(([, start, end]) => start <= time && time < end)?.[0];
+      if (word && word !== activeWord) followText(word);
+      highlightWord(word);
       wordFrame = requestAnimationFrame(update);
     }
     update();
@@ -92,7 +122,7 @@
 
   function stopWithError(message) {
     playing = false;
-    mode = undefined;
+    audio.pause();
     stopWordTracking();
     highlight();
     setPlayLabel('Retry');
@@ -110,7 +140,6 @@
     if (index === segments.length) {
       index = 0;
       playing = false;
-      mode = undefined;
       highlight();
       setPlayLabel('Listen to article');
       return;
@@ -118,46 +147,21 @@
     playSegment();
   }
 
-  function speak(id, text) {
-    if (!current(id) || mode === 'speech') return;
-    stopWordTracking();
-    audio.pause();
-    audio.onerror = null;
-    audio.onended = null;
-    if (!canSpeak) {
-      stopWithError('Audio is unavailable.');
-      return;
-    }
-
-    mode = 'speech';
-    const voice = speech.getVoices()[0];
-    voiceLabel.textContent = browserVoice(voice);
-    utterance = new SpeechSynthesisUtterance(text);
-    if (voice) utterance.voice = voice;
-    utterance.lang = voice?.lang || document.documentElement.lang || 'en';
-    utterance.rate = Number(rate.value);
-    utterance.onstart = () => {
-      if (current(id)) highlight(blocks[segments[index].block]);
-    };
-    utterance.onend = () => finishSegment(id);
-    utterance.onerror = () => {
-      if (current(id)) stopWithError('Speech is unavailable.');
-    };
-    speech.speak(utterance);
-    if (speech.paused) speech.resume();
-  }
-
   function playAudio(id, segment) {
-    mode = 'audio';
     audio.playbackRate = Number(rate.value);
     audio.onended = () => finishSegment(id);
-    audio.onerror = () => speak(id, segment.text);
+    const onError = () => {
+      if (current(id)) stopWithError('Could not play this narration clip.');
+    };
+    audio.onerror = onError;
     audio.play().then(() => {
-      if (current(id) && mode === 'audio') {
-        highlight(blocks[segment.block]);
+      if (current(id)) {
+        const block = blocks[segment.block];
+        highlight(block);
+        if (segment.firstWord === undefined) followText(block?.range);
         trackWords(id, segment);
       }
-    }).catch(() => speak(id, segment.text));
+    }, onError);
   }
 
   function playSegment() {
@@ -166,14 +170,12 @@
     const segment = segments[index];
     setPlayLabel('Pause');
     status.textContent = '';
-    mode = undefined;
     if (activeBlock !== blocks[segment.block]) highlight();
 
     if (!segment.audio) {
-      speak(id, segment.text);
+      stopWithError('This narration clip is unavailable.');
       return;
     }
-    voiceLabel.textContent = segment.model;
     audio.src = segment.audio;
     playAudio(id, segment);
   }
@@ -181,20 +183,24 @@
   function playFrom(position) {
     ++playbackId;
     audio.pause();
-    if (mode === 'speech') speech.cancel();
     index = position;
     playing = true;
     playSegment();
   }
 
+  function jumpBlock(direction) {
+    if (!playing) return;
+    const position = adjacentBlockStart(direction);
+    if (position !== undefined) playFrom(position);
+  }
+
+  back.addEventListener('click', () => jumpBlock(-1));
+  next.addEventListener('click', () => jumpBlock(1));
+
   button.addEventListener('click', () => {
     if (playing) {
-      if (mode === 'speech') {
-        speech.pause();
-      } else {
-        ++playbackId;
-        audio.pause();
-      }
+      ++playbackId;
+      audio.pause();
       playing = false;
       stopWordTracking();
       setPlayLabel('Resume');
@@ -202,10 +208,8 @@
     }
 
     playing = true;
-    if (mode === 'speech') {
-      setPlayLabel('Pause');
-      speech.resume();
-    } else if (mode === 'audio' && !audio.error && audio.currentTime > 0) {
+    followScrollY = window.scrollY;
+    if (playLabel.textContent === 'Resume' && audio.currentTime > 0) {
       setPlayLabel('Pause');
       playAudio(++playbackId, segments[index]);
     } else {
@@ -215,13 +219,6 @@
 
   rate.addEventListener('change', () => {
     audio.playbackRate = Number(rate.value);
-    if (mode !== 'speech') return;
-    if (playing) playFrom(index);
-    else {
-      ++playbackId;
-      speech.cancel();
-      mode = undefined;
-    }
   });
 
   // Follow the generator's rendered prose boundaries while retaining DOM offsets.
@@ -270,25 +267,11 @@
     return result;
   }
 
-  function browserSegments() {
-    if (!canSpeak) return [];
-    const segmenter = typeof Intl.Segmenter === 'function'
-      ? new Intl.Segmenter(document.documentElement.lang || 'en', { granularity: 'sentence' })
-      : null;
-    return blocks.flatMap(({ text }, block) => {
-      const sentences = segmenter
-        ? Array.from(segmenter.segment(text), entry => entry.segment)
-        : text.split(/(?<=[.!?])\s+/);
-      return sentences.flatMap(sentence => (sentence.trim().match(/.{1,350}(?:\s|$)|.{1,350}/gu) || [])
-        .map(part => ({ text: part.trim(), block })).filter(segment => segment.text));
-    });
-  }
-
   function registerBlockTargets() {
     segments.forEach(({ block }, position) => {
-      if (starts.has(block) || !blocks[block]) return;
+      if (starts.has(block)) return;
       starts.set(block, position);
-      const { element } = blocks[block];
+      const element = blocks[block]?.element;
       if (!element || element === body || element.matches(interactive)) return;
       if (!blockTargets.has(element)) blockTargets.set(element, []);
       blockTargets.get(element).push(block);
@@ -333,14 +316,18 @@
       event.preventDefault();
       if (event.repeat) return;
     }
+    if (!playing) followScrollY = window.scrollY;
     playFrom(starts.get(block));
   }
 
   function initialize(manifest) {
+    if (!Array.isArray(manifest?.segments) || !manifest.segments.length) {
+      throw new Error('Empty narration manifest');
+    }
     blocks = articleBlocks();
     let previousStart;
     let legacyBlock = -1;
-    segments = manifest?.segments.map((segment, position) => {
+    segments = manifest.segments.map((segment, position) => {
       const start = segment.blockStart ?? position;
       if (start !== previousStart) legacyBlock += 1;
       previousStart = start;
@@ -348,15 +335,12 @@
         ...segment,
         block: segment.block ?? legacyBlock,
         audio: segment.audio && new URL(segment.audio, page).href,
-        model: segment.model || manifest.model || 'Model unknown',
       };
-    }) || browserSegments();
-    if (!segments.length || (!canSpeak && !segments.some(segment => segment.audio))) return;
+    });
 
     const words = segments.reduce((count, segment) => count + segment.text.split(/\s+/).length, 0);
     const minutes = Math.max(1, Math.ceil(words / 225));
     player.querySelector('[data-reading-time]').textContent = `About ${minutes} min read`;
-    voiceLabel.textContent = segments[0].audio ? segments[0].model : browserVoice();
     locateTimedWords();
     registerBlockTargets();
     body.addEventListener('click', seekFromEvent);
@@ -370,6 +354,10 @@
       if (!response.ok) throw new Error('Missing audio manifest');
       return response.json();
     })
-    .catch(() => undefined)
-    .then(initialize);
+    .then(initialize)
+    .catch(() => {
+      button.disabled = true;
+      status.textContent = 'Article narration is unavailable.';
+      player.hidden = false;
+    });
 })();

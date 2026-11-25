@@ -1,4 +1,7 @@
 .blog-audio:not([hidden]) {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -6,6 +9,7 @@
   padding: 0.75rem 0;
   margin-bottom: 1.5rem;
   border-block: 1px solid var(--blog-audio-border, #e8e8e8);
+  background: var(--blog-audio-background, #fdfdfd);
   font-size: 0.875rem;
 }
 
@@ -84,21 +88,12 @@
   outline-offset: 2px;
 }
 
-.blog-audio label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  min-width: 0;
-  max-width: 100%;
-}
-
 .blog-audio select {
   min-width: 0;
   max-width: 16rem;
 }
 
-.blog-audio [data-reading-time],
-.blog-audio [data-voice] {
+.blog-audio [data-reading-time] {
   color: var(--blog-audio-muted, #626262);
 }
 

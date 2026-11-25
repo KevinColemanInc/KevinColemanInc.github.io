@@ -5,4 +5,5 @@ _site
 *.log
 images/.DS_Store
 .blog-audio-cache/
+.venv-blog-tts/
 __pycache__/
