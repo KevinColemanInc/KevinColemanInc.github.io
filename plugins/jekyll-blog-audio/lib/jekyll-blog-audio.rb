@@ -24,7 +24,8 @@ module JekyllBlogAudio
 
       context.stack do
         context["audio_manifest"] = manifest_url
-        Liquid::Template.parse(File.read(File.join(__dir__, "player.html"))).render!(context)
+        template = File.read(File.join(__dir__, "player.html"), encoding: "UTF-8")
+        Liquid::Template.parse(template).render!(context)
       end
     end
   end
@@ -32,7 +33,7 @@ module JekyllBlogAudio
   def self.complete?(site, manifest_url)
     root = File.join(site.source, OUTPUT)
     manifest = File.join(root, Jekyll::URL.unescape_path(manifest_url))
-    payload = JSON.parse(File.read(manifest))
+    payload = JSON.parse(File.read(manifest, encoding: "UTF-8"))
     return false unless payload.is_a?(Hash)
 
     segments = payload["segments"]
