@@ -30,7 +30,7 @@ Dir.mktmpdir("jekyll-blog-audio-") do |site|
   )
 
   unless shard
-    output = File.join(cache, "published")
+    output = File.expand_path("published-blog-audio")
     # Publish clips before their manifests. Rename each file atomically so a build
     # running at the same time never reads a partially copied manifest or clip.
     Dir.mktmpdir("publish-", cache) do |staging|

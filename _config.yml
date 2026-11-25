@@ -43,5 +43,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - plugins
+  - published-blog-audio
 include:
   - _redirects

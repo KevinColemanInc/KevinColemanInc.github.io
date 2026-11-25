@@ -21,7 +21,7 @@ post's front matter to omit narration for that post.
 
 Run `bundle exec jekyll serve` to preview the site, or `bundle exec jekyll build`
 to build it. Both commands use previously generated audio from
-`.blog-audio-cache/published/`. A post gets a player only when its manifest and
+`published-blog-audio/`. A post gets a player only when its manifest and
 all referenced clips are available.
 
 With uv and FFmpeg installed, run the audio command from the site's root.
@@ -37,11 +37,10 @@ dependencies installed.
 
 The first run downloads public model weights. Inference runs locally using
 CUDA, Apple Metal, or CPU. The audio command renders posts in a temporary
-directory and generates missing MP3 clips in `.blog-audio-cache/`. To align
-the clips and prepare them for the Jekyll player, run
-`bundle exec ruby plugins/jekyll-blog-audio/scripts/build-blog-audio.rb`
-with `BLOG_TTS_PYTHON=.venv-blog-tts/bin/python` or your Python override, and
-the same device setting.
+directory and generates missing MP3 clips in `.blog-audio-cache/`. Run
+`make publish-tts` to generate missing clips, align them, and update the
+deployable MP3s and timing manifests in `published-blog-audio/`. Commit that
+directory with the post changes. The local generation cache stays ignored.
 
 On Apple Metal, the generator logs live tensor memory and total Metal driver
 memory after each clip's cache cleanup. It compares early and late medians
@@ -81,6 +80,5 @@ the player colors to a different theme, set the CSS custom properties
 
 ## GitHub Pages
 
-Select GitHub Actions as the Pages publishing source. The workflow builds
-eight audio cache shards in parallel, assembles the generated audio, and then
-builds the Pages artifact.
+Select GitHub Actions as the Pages publishing source. The workflow builds the Pages artifact
+with the audio and timing manifests from the repository.

@@ -6,7 +6,7 @@ require "json"
 module JekyllBlogAudio
   ROOT = File.expand_path("..", __dir__)
   ASSETS = %w[blog-audio.css blog-audio.js].freeze
-  OUTPUT = ".blog-audio-cache/published"
+  OUTPUT = "published-blog-audio"
 
   class Player < Liquid::Tag
     def render(context)
